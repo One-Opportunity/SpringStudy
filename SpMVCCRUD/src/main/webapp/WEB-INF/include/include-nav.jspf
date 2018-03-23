@@ -1,0 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+	<nav>
+		<ul>
+			<li><a href="/crud/admin.jwo">관리자 확인</a>
+			<li><a href="/crud/list.jwo">메모장 가기</a>
+			<li><a href="#">메뉴3</a>
+		</ul>
+	</nav>
