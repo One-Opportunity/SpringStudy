@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path=""/> -->
+<!-- 			<bean class="com.biz.login.interceptor.AuthInterceptor" -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
+	
+	<!-- 위와 아래의 내용 같음 -->
+	
+	<bean id="LoginAuth" class="com.biz.login.interceptor.AuthInterceptor"></bean>
+	<mvc:interceptors>
+		<mvc:interceptor>
+		
+<!-- 			<mvc:mapping path="/**"/> --> <!-- 모든 요청 처리 -->
+			<mvc:mapping path="/admin.good"/> <!-- admin.good만 처리 -->
+			<ref bean="LoginAuth"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>
