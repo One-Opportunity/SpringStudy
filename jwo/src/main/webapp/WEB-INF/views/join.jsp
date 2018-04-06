@@ -23,15 +23,22 @@
 
 			// 검증에 통과하면	
 			if($("#frmJoin").valid()) {
-
+				
+				$.get("${_ctx}/captcha/isRight", {captcha : $("#captcha").val()}, function(data){
+					if(data==1){
 				//서버에 데이터 전송	
-				var url = "${_ctx}/join.sc";
-				$.post(url, $("#frmJoin").serialize(), function(data) {
+						var url = "${_ctx}/join.sc";
+						$.post(url, $("#frmJoin").serialize(), function(data) {
 
-					if (data == "s") {
-						alert("회원가입 성공");
-					} else {
-						alert("회원가입 실패!!");
+						if (data == "s") {
+							alert("회원가입 성공");
+							document.location.href="/jwo/index.sc"
+						} else {
+							alert("회원가입 실패!!");
+							}
+						});
+					} else{
+						alert("문자가 다릅니다.");
 					}
 				});
 			}
@@ -50,22 +57,33 @@
 			<form id="frmJoin" name="frmJoin">
 				<dl>
 					<dd>
-						<input type="text" id="userId" name="loginId" placeholder="아이디" maxlength="15" minlength="6" required />
+						<input type="text" id="userId" name="loginId" placeholder="아이디"
+							maxlength="15" minlength="6" required />
 					</dd>
 					<dd>
-						<input type="password" id="loginPw" name="loginPw" placeholder="비밀번호" maxlength="15" minlength="8" required />
+						<input type="password" id="loginPw" name="loginPw"
+							placeholder="비밀번호" maxlength="15" minlength="8" required />
 					</dd>
 					<dd>
-						<input type="password" name="reLoginPw" placeholder="비밀번호확인" maxlength="15" minlength="8" equalTo="#loginPw" required />
+						<input type="password" name="reLoginPw" placeholder="비밀번호확인"
+							maxlength="15" minlength="8" equalTo="#loginPw" required />
 					</dd>
 					<dd>
-						<input type="text" name="name" placeholder="이름" maxlength="30" required />
+						<input type="text" name="name" placeholder="이름" maxlength="30"
+							required />
 					</dd>
 					<dd>
-						<input type="text" id="phone" name="phone" placeholder="핸드폰번호" alt="mobile" maxlength="13" required />
+						<input type="text" id="phone" name="phone" placeholder="핸드폰번호"
+							alt="mobile" maxlength="13" required />
 					</dd>
 					<dd>
-						<input type="email" name="email" placeholder="이메일" maxlength="20" required />
+						<input type="email" name="email" placeholder="이메일" maxlength="20"
+							required />
+					</dd>
+					<dd>
+						<img src="${_ctx}/captcha/index" /> <input type="text"
+							name="captcha" id="captcha" placeholder="문자를 입력하세요"
+							style="width: 238px;" required />
 					</dd>
 				</dl>
 

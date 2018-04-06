@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class joinController {
+public class JoinController {
 	
 	// 회원가입 페이지로 이동(GET과 POST로 구분)
 	@RequestMapping(value="/join.sc", method=RequestMethod.GET)
