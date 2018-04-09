@@ -11,15 +11,37 @@
 		$("#phone").setMask();
 		$("input").focus(function(){
 			$(this).css("background-color", "#DDDDDD");
-		})
+		});
 	    $("input").blur(function(){
 	        $(this).css("background-color", "#ffffff");
 	    });
+		$("#imgCaptcha").click(function(){
+			$(this).attr("src", "${_ctx}/captcha/index");
+		});
 		$("#userId").focus();
+		
+		$("#btnCheckId").click(function(){
+			var loginId = $("#loginId").val();
+			if (loginId == "") {
+				alert("Id를 입력하세요");
+			} else {
+				var url = "${_ctx}/checkId.sc?loginId="+loginId;
+				$.get(url, function(data){
+					if(data.code > 0) {
+						alert("ID를 사용할 수 있습니다");
+					} else {
+						alert("중복된 ID입니다. 다시 입력해주세요");
+					}
+					
+				});
+			}
+		});
 		// "저장" 버튼을 클릭 했을때
 		$("#btnSave").click(function() {
 			// javascript로 form 전송
 			// frmJoin.submit();
+			
+		$("#imgCaptcha").attr("src", "${_ctx}/captcha/index");
 
 			// 검증에 통과하면	
 			if($("#frmJoin").valid()) {
@@ -57,8 +79,9 @@
 			<form id="frmJoin" name="frmJoin">
 				<dl>
 					<dd>
-						<input type="text" id="userId" name="loginId" placeholder="아이디"
-							maxlength="15" minlength="6" required />
+						<input type="text" id="loginId" name="loginId" placeholder="아이디"
+							maxlength="15" minlength="6" style="width: 70%;" required />
+							<a href="javascript:;" id="btnCheckId" class="checkId">아이디체크</a>
 					</dd>
 					<dd>
 						<input type="password" id="loginPw" name="loginPw"
@@ -81,13 +104,14 @@
 							required />
 					</dd>
 					<dd>
-						<img src="${_ctx}/captcha/index" /> <input type="text"
+						<img src="${_ctx}/captcha/index" id="imgCaptcha" style="cursor:pointer" /> <input type="text"
 							name="captcha" id="captcha" placeholder="문자를 입력하세요"
-							style="width: 238px;" required />
+							style="width: 230px;" required />
 					</dd>
 				</dl>
 
-				<a href="javascript:;" class="loginBtn" id="btnSave">저장</a> <a
+				<a href="javascript:;"  class="loginBtn" id="btnSave">저장</a> 
+				<a
 					href="${_ctx}/index.sc" class="joinBtn">취소</a>
 			</form>
 		</div>

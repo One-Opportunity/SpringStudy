@@ -18,7 +18,7 @@ public class CaptchaController {
 	public void index(HttpServletResponse response, HttpSession session) {
 		 Captcha captcha = new Captcha.Builder(148, 48)
 	                .addText() // default: 5개의 숫자+문자
-	                .addNoise().addNoise().addNoise() // 시야 방해 라인 3개
+	                .addNoise().addNoise().addNoise().addNoise().addNoise().addNoise() // 시야 방해 라인 3개
 	                .addBackground() // 기본 하얀색 배경
 	                .build();
 	 
@@ -37,7 +37,6 @@ public class CaptchaController {
 	public Integer isRight(String captcha, HttpSession session) {
 		String answer = (String)session.getAttribute("captcha");
 		if(captcha.equals(answer)) {
-			
 			return 1;
 		}
 		return 0;
