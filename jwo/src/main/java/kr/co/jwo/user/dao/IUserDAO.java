@@ -7,7 +7,9 @@ public interface IUserDAO {
 	public void insert(UserDTO userDTO);
 	public void update(UserDTO userDTO);
 	public UserDTO select(int userId);
-	public int selectCountByLoginId(String loginId);
 	public void delete(int userId);
+	public int selectCountByLoginId(String loginId);
+	public int selectCountByEmail(String email);
+	public int selectCountByPhone(String phone);
 	
 }

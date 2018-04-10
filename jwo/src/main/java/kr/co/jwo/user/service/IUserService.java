@@ -7,6 +7,8 @@ public interface IUserService {
 	public void write(UserDTO userDTO);
 	public void edit(UserDTO userDTO);
 	public UserDTO view(int userId);
-	public int viewCountByLoginId(String loginId);
 	public void remove(int userId);
+	public int viewCountByLoginId(String loginId);
+	public int viewCountByEmail(String email);
+	public int viewCountByPhone(String phone);
 }

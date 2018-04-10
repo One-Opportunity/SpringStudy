@@ -40,4 +40,15 @@ public class UserDAOImpl extends BaseDaoSupport implements IUserDAO{
 		return this.getSqlSession().selectOne("user.selectCountByLoginId", loginId);
 	}
 
+	@Override
+	public int selectCountByEmail(String email) {
+	
+		return this.getSqlSession().selectOne("user.selectCountByEmail", email);
+	}
+
+	@Override
+	public int selectCountByPhone(String phone) {
+		return this.getSqlSession().selectOne("user.selectCountByPhone", phone);
+	}
+
 }

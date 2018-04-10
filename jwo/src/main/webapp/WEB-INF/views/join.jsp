@@ -18,21 +18,76 @@
 		$("#imgCaptcha").click(function(){
 			$(this).attr("src", "${_ctx}/captcha/index");
 		});
-		$("#userId").focus();
+		$("#loginId").focus();
+
 		
 		$("#btnCheckId").click(function(){
 			var loginId = $("#loginId").val();
 			if (loginId == "") {
 				alert("Id를 입력하세요");
 			} else {
-				var url = "${_ctx}/checkId.sc?loginId="+loginId;
+				var url = "${_ctx}/check/id.sc?loginId="+loginId;
 				$.get(url, function(data){
+					// 아이디 사용 가능
 					if(data.code > 0) {
-						alert("ID를 사용할 수 있습니다");
+						alert(data.msg);
+						
+						// 아이디 중복 체크를 했음.
+						$("#checkedId").val("Y");
+						
+					// 아이디 사용 불가능
 					} else {
-						alert("중복된 ID입니다. 다시 입력해주세요");
+						alert(data.msg);
+						
+						// 아이디 중복 체크 안했음.
+						$("#checkedId").val("N");
 					}
 					
+				});
+			}
+		});
+		
+		
+		// phone 중복체크
+		$("#btnCheckPhone").click(function(){
+			var checkPhone = $("#phone").val();
+			if(checkPhone == "") {
+				alert("휴대폰을 입력해주세요");
+			} else {
+				var url = "${_ctx}/check/phone.sc?phone=" + checkPhone;
+				$.get(url, function(data){
+					//사용가능
+					if(data.phoneCode > 0 ) {
+						alert(data.phoneMsg);
+						
+						//phone 중복체크 됨
+						$("#checkedPhone").val("Y");
+					} else{
+						alert(data.phoneMsg);
+						
+						//phone 중복체크 안됨
+						$("#checkedPhone").val("N");
+						
+					}
+				})
+			}
+		});
+		
+		//email 중복체크
+		$("#btnCheckEmail").click(function(){
+			var email = $("#email").val();
+			if(email==""){
+				alert("이메일을 입력하세요");
+			} else {
+				var url = "${_ctx}/check/email.sc?email=" + email;
+				$.get(url, function(data){
+					if(data.emailCode > 0) {
+						alert(data.emailMsg);
+						$("#checkedEmail").val("Y");
+					} else {
+						alert(data.emailMsg);
+						$("#checkedEmail").val("N");
+					}
 				});
 			}
 		});
@@ -41,7 +96,23 @@
 			// javascript로 form 전송
 			// frmJoin.submit();
 			
-		$("#imgCaptcha").attr("src", "${_ctx}/captcha/index");
+			// 1. 아이디 중복 체크 검사
+			var checkedId = $("#checkedId").val();
+			if(checkedId == "N") {
+				alert("아이디 중복체크를 먼저 해주세요.");
+				return;
+			}
+			var checkedPhone = $("#checkedPhone").val();
+			if(checkedPhone == "N") {
+				alert("휴대폰 중복체크를 해주세요.");
+				return;
+			}
+			var checkedEmail = $("#checkedEmail").val();
+			if(checkedEmail == "N") {
+				alert("이메일 중복체크를 해주세요.");
+				return;
+			}
+			$("#imgCaptcha").attr("src", "${_ctx}/captcha/index");
 
 			// 검증에 통과하면	
 			if($("#frmJoin").valid()) {
@@ -70,13 +141,11 @@
 </head>
 
 <body>
-
 	<div id="loginWrap">
-
-
 		<div id="join">
 			<h1>회원가입</h1>
 			<form id="frmJoin" name="frmJoin">
+				<input type="hidden" id="checkedId" value="N" />
 				<dl>
 					<dd>
 						<input type="text" id="loginId" name="loginId" placeholder="아이디"
@@ -97,11 +166,15 @@
 					</dd>
 					<dd>
 						<input type="text" id="phone" name="phone" placeholder="핸드폰번호"
-							alt="mobile" maxlength="13" required />
+							alt="mobile" maxlength="13" style="width: 70%;" required />
+						<a href="javascript:;" id="btnCheckPhone" class="checkId">휴대폰체크</a>
+							
 					</dd>
 					<dd>
-						<input type="email" name="email" placeholder="이메일" maxlength="20"
+						<input type="email" id="email" name="email" placeholder="이메일" maxlength="20" style="width: 70%;"
 							required />
+						<a href="javascript:;" id="btnCheckEmail" class="checkId">이메일체크</a>
+							
 					</dd>
 					<dd>
 						<img src="${_ctx}/captcha/index" id="imgCaptcha" style="cursor:pointer" /> <input type="text"
@@ -109,10 +182,11 @@
 							style="width: 230px;" required />
 					</dd>
 				</dl>
+				<input type="hidden" id="checkedPhone" value="N" />
+				<input type="hidden" id="checkedEmail" value="N" />
 
 				<a href="javascript:;"  class="loginBtn" id="btnSave">저장</a> 
-				<a
-					href="${_ctx}/index.sc" class="joinBtn">취소</a>
+				<a href="${_ctx}/index.sc" class="joinBtn">취소</a>
 			</form>
 		</div>
 	</div>

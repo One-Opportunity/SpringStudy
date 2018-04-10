@@ -17,6 +17,7 @@ public class JoinController {
 
 	@Autowired
 	IUserService userService = null;
+	int result = 0;
 
 	// 회원가입 페이지로 이동(GET과 POST로 구분)
 	@RequestMapping(value = "/join.sc", method = RequestMethod.GET)
@@ -39,23 +40,61 @@ public class JoinController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/checkId.sc", method = RequestMethod.GET)
+	@RequestMapping(value = "/check/id.sc", method = RequestMethod.GET)
 	public ResponseDTO checkId(String loginId) {
 		log.debug("loginId =>>>>>>" + loginId);
 		ResponseDTO responseDTO = new ResponseDTO();
 		try {
-			int result = userService.viewCountByLoginId(loginId);
+			result = userService.viewCountByLoginId(loginId);
 			responseDTO.setCode(result);
 			if (result == 1) {
-				responseDTO.setMsg("ID를 사용 할 수 있습니다.");
+				responseDTO.setMsg("사용 가능한 아이디입니다.");
 			} else {
-				responseDTO.setMsg("중복된 ID입니다. 다시 입력해주세요.");
+				responseDTO.setMsg("중복된 아이디입니다. 다시 입력해주세요.");
 			}
 		} catch (Exception e) {
 			responseDTO.setCode(-1);
 			responseDTO.setMsg("에러가 발생했습니다. 관리자에게 문의하세요");
 		}
+		return responseDTO;
+	}
 
+	@ResponseBody
+	@RequestMapping(value = "/check/phone.sc", method = RequestMethod.GET)
+	public ResponseDTO checkPhone(String phone) {
+		ResponseDTO responseDTO = new ResponseDTO();
+
+		try {
+			result = userService.viewCountByPhone(phone);
+			responseDTO.setPhoneCode(result);
+			if (result == 1) {
+				responseDTO.setPhoneMsg("당신의 휴대폰이 맞습니다.");
+			} else {
+				responseDTO.setPhoneMsg("중복된 휴대폰입니다. 다시 입력해주세요.");
+			}
+		} catch (Exception e) {
+			responseDTO.setPhoneCode(-1);
+			responseDTO.setPhoneMsg("에러가 발생했습니다. 관리자에게 문의하세요");
+		}
+		return responseDTO;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/check/email.sc", method = RequestMethod.GET)
+	public ResponseDTO checkEmail(String email) {
+		ResponseDTO responseDTO = new ResponseDTO();
+		try {
+			result = userService.viewCountByEmail(email);
+			responseDTO.setEmailCode(result);
+			if(result == 1) {
+				responseDTO.setEmailMsg("이메일을 사용할 수 있습니다.");
+			} else {
+				responseDTO.setEmailMsg("중복된 이메일입니다. 다시 입력해주세요.");
+			}
+		} catch (Exception e) {
+			responseDTO.setEmailCode(-1);
+			responseDTO.setEmailMsg("에러가 발생했습니다 관리자에게 문의하세요");
+		}
 		return responseDTO;
 	}
 }

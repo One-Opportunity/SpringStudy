@@ -11,6 +11,7 @@ import kr.co.jwo.user.service.IUserService;
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	IUserDAO userDAO = null;
+	int cnt = 0;
 
 	@Override
 	public void write(UserDTO userDTO) {
@@ -34,7 +35,27 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public int viewCountByLoginId(String loginId) {
-		int cnt = userDAO.selectCountByLoginId(loginId);
+		cnt = userDAO.selectCountByLoginId(loginId);
+		if (cnt == 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int viewCountByEmail(String email) {
+		cnt = userDAO.selectCountByEmail(email);
+		if (cnt == 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int viewCountByPhone(String phone) {
+		cnt = userDAO.selectCountByPhone(phone);
 		if (cnt == 0) {
 			return 1;
 		} else {

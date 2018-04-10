@@ -56,4 +56,16 @@
 		FROM TB_USER
 		WHERE LOGIN_ID = #{loginId}
 	</select>
+	<select id="selectCountByPhone" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM TB_USER
+		WHERE PHONE = #{phone}
+	</select>
+	<select id="selectCountByEmail" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM TB_USER
+		WHERE EMAIL = #{email}
+	</select>
 </mapper>
