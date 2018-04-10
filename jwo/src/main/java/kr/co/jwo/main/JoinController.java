@@ -66,15 +66,15 @@ public class JoinController {
 
 		try {
 			result = userService.viewCountByPhone(phone);
-			responseDTO.setPhoneCode(result);
+			responseDTO.setCode(result);
 			if (result == 1) {
-				responseDTO.setPhoneMsg("당신의 휴대폰이 맞습니다.");
+				responseDTO.setMsg("당신의 휴대폰이 맞습니다.");
 			} else {
-				responseDTO.setPhoneMsg("중복된 휴대폰입니다. 다시 입력해주세요.");
+				responseDTO.setMsg("중복된 휴대폰입니다. 다시 입력해주세요.");
 			}
 		} catch (Exception e) {
-			responseDTO.setPhoneCode(-1);
-			responseDTO.setPhoneMsg("에러가 발생했습니다. 관리자에게 문의하세요");
+			responseDTO.setCode(-1);
+			responseDTO.setMsg("에러가 발생했습니다. 관리자에게 문의하세요");
 		}
 		return responseDTO;
 	}
@@ -85,16 +85,17 @@ public class JoinController {
 		ResponseDTO responseDTO = new ResponseDTO();
 		try {
 			result = userService.viewCountByEmail(email);
-			responseDTO.setEmailCode(result);
+			responseDTO.setCode(result);
 			if(result == 1) {
-				responseDTO.setEmailMsg("이메일을 사용할 수 있습니다.");
+				responseDTO.setMsg("이메일을 사용할 수 있습니다.");
 			} else {
-				responseDTO.setEmailMsg("중복된 이메일입니다. 다시 입력해주세요.");
+				responseDTO.setMsg("중복된 이메일입니다. 다시 입력해주세요.");
 			}
 		} catch (Exception e) {
-			responseDTO.setEmailCode(-1);
-			responseDTO.setEmailMsg("에러가 발생했습니다 관리자에게 문의하세요");
+			responseDTO.setCode(-1);
+			responseDTO.setMsg("에러가 발생했습니다 관리자에게 문의하세요");
 		}
 		return responseDTO;
 	}
+	
 }

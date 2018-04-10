@@ -30,7 +30,7 @@
 				<dl>
 					<dt>id</dt>
 					<dd>
-						<input type="text" id="userId" name="id" placeholder="User ID" autofocus title="ID" />
+						<input type="text" id="userId" name="id" placeholder="User ID" title="ID" />
 					</dd>
 					<dt>pw</dt>
 					<dd>
@@ -38,8 +38,10 @@
 					</dd>
 				</dl>
 
-				<a href="list.html" class="loginBtn">로그인</a> <a
-					href="${_ctx}/join.sc" class="joinBtn">회원가입</a>
+				<a href="${_ctx}/list.html" class="loginBtn">로그인</a> 
+				<a href="${_ctx}/join.sc" class="joinBtn">회원가입</a>
+				<a href="${_ctx}/find.sc">아이디 찾기</a> 
+				<a href="${_ctx}/find.sc">비밀번호 찾기</a> 
 
 			</form>
 

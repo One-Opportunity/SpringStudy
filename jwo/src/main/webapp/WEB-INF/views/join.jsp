@@ -19,7 +19,18 @@
 			$(this).attr("src", "${_ctx}/captcha/index");
 		});
 		$("#loginId").focus();
-
+		//id 포커스 시 
+		$("#loginId").focus(function(){
+			$("#checkedId").val("N");
+		})
+		//phone 포커스 시 
+		$("#phone").focus(function(){
+			$("#checkedPhone").val("N");
+		})
+		//email 포커스 시 
+		$("#email").focus(function(){
+			$("#checkedEmail").val("N");
+		})
 		
 		$("#btnCheckId").click(function(){
 			var loginId = $("#loginId").val();
@@ -50,6 +61,7 @@
 		
 		// phone 중복체크
 		$("#btnCheckPhone").click(function(){
+			
 			var checkPhone = $("#phone").val();
 			if(checkPhone == "") {
 				alert("휴대폰을 입력해주세요");
@@ -57,13 +69,13 @@
 				var url = "${_ctx}/check/phone.sc?phone=" + checkPhone;
 				$.get(url, function(data){
 					//사용가능
-					if(data.phoneCode > 0 ) {
-						alert(data.phoneMsg);
+					if(data.code > 0 ) {
+						alert(data.msg);
 						
 						//phone 중복체크 됨
 						$("#checkedPhone").val("Y");
 					} else{
-						alert(data.phoneMsg);
+						alert(data.msg);
 						
 						//phone 중복체크 안됨
 						$("#checkedPhone").val("N");
@@ -81,45 +93,52 @@
 			} else {
 				var url = "${_ctx}/check/email.sc?email=" + email;
 				$.get(url, function(data){
-					if(data.emailCode > 0) {
-						alert(data.emailMsg);
+					if(data.code > 0) {
+						alert(data.msg);
 						$("#checkedEmail").val("Y");
 					} else {
-						alert(data.emailMsg);
+						alert(data.msg);
 						$("#checkedEmail").val("N");
 					}
 				});
 			}
 		});
+		
+		
 		// "저장" 버튼을 클릭 했을때
 		$("#btnSave").click(function() {
 			// javascript로 form 전송
 			// frmJoin.submit();
 			
+			// * 캡챠 새로고침 *
+			$("#imgCaptcha").attr("src", "${_ctx}/captcha/index");
+
 			// 1. 아이디 중복 체크 검사
 			var checkedId = $("#checkedId").val();
 			if(checkedId == "N") {
 				alert("아이디 중복체크를 먼저 해주세요.");
 				return;
 			}
+			
+			// 2. 아이디 중복 체크 검사
 			var checkedPhone = $("#checkedPhone").val();
 			if(checkedPhone == "N") {
 				alert("휴대폰 중복체크를 해주세요.");
 				return;
 			}
+			
+			// 3. 아이디 중복 체크 검사
 			var checkedEmail = $("#checkedEmail").val();
 			if(checkedEmail == "N") {
 				alert("이메일 중복체크를 해주세요.");
 				return;
 			}
-			$("#imgCaptcha").attr("src", "${_ctx}/captcha/index");
 
 			// 검증에 통과하면	
 			if($("#frmJoin").valid()) {
-				
 				$.get("${_ctx}/captcha/isRight", {captcha : $("#captcha").val()}, function(data){
 					if(data==1){
-				//서버에 데이터 전송	
+						//서버에 데이터 전송	
 						var url = "${_ctx}/join.sc";
 						$.post(url, $("#frmJoin").serialize(), function(data) {
 
@@ -128,6 +147,9 @@
 							document.location.href="/jwo/index.sc"
 						} else {
 							alert("회원가입 실패!!");
+							
+							//화면 새로고침
+							document.location.reload();
 							}
 						});
 					} else{

@@ -13,18 +13,16 @@
 <meta name="copyright" content="COPYRIGHT ⓒ KMS. ALL RIGHTS RESERVED." />
 <title>통합게시판|조원오|</title>
 
-
 <!-- css -->
 <link href="${_ctx}/res/css/base.css" rel="stylesheet" type="text/css" />
 <link href="${_ctx}/res/css/layout.css" rel="stylesheet" type="text/css" />
 
 <!-- js -->
-
 <script type="text/javascript" src="${_ctx}/res/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/validate/jquery.validate.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/validate/additional-methods.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/validate/localization/messages_ko.min.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/validate/meiomask.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/main.js"></script>
-
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>
     
