@@ -74,15 +74,15 @@ function Pop_close()
 }
 
 
-$(window).scroll(function(){
+$(window).godroll(function(){
 	
 	if($("#locationWrap").hasClass("fixed")){
 		
-		if($(this).scrollTop() < 60){
+		if($(this).godrollTop() < 60){
 			$("#locationWrap").removeClass("fixed");
 		}
 	}else{
-		if($(this).scrollTop() > 60){
+		if($(this).godrollTop() > 60){
 			$("#locationWrap").addClass("fixed");
 		}
 	}

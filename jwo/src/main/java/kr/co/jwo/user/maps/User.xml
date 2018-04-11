@@ -54,7 +54,8 @@
 		resultType="int">
 		SELECT COUNT(*) AS CNT
 		FROM TB_USER
-		WHERE LOGIN_ID = #{loginId}
+		WHERE LOGIN_ID =
+		#{loginId}
 	</select>
 	<select id="selectCountByPhone" parameterType="String"
 		resultType="int">
@@ -67,5 +68,11 @@
 		SELECT COUNT(*) AS CNT
 		FROM TB_USER
 		WHERE EMAIL = #{email}
+	</select>
+
+	<select id="selectByLoginId" parameterType="String" resultType="kr.co.jwo.user.dto.UserDTO">
+		SELECT *
+		FROM TB_USER
+		WHERE LOGIN_ID= #{loginId}
 	</select>
 </mapper>

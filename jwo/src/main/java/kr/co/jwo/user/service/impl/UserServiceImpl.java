@@ -63,4 +63,10 @@ public class UserServiceImpl implements IUserService {
 		}
 	}
 
+	@Override
+	public UserDTO viewByLoginId(String loginId) {
+		
+		return userDAO.selectOneByLoginId(loginId);
+	}
+
 }

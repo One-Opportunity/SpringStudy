@@ -24,5 +24,4 @@
 <script type="text/javascript" src="${_ctx}/res/js/validate/localization/messages_ko.min.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/validate/meiomask.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/main.js"></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>
     

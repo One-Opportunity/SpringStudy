@@ -7,13 +7,25 @@
 <c:import url="/WEB-INF/views/inc/head.jsp" />
 <script>
 	$(document).ready(function() {
-		$("input").focus(function(){
+		// "로그인" 버튼 클릭 시
+		$("#btnLogin").click(function() {
+			if ($("#frmLogin").valid()) {
+				// jQuery와 자바스크립트 소스 
+				$("#frmLogin").submit();
+				//  frmLogin.submit();
+			}
+		})
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$("input").focus(function() {
 			$(this).css("background-color", "#DDDDDD");
 		})
-	    $("input").blur(function(){
-	        $(this).css("background-color", "#ffffff");
-	    });
-		$("#userId").focus();
+		$("input").blur(function() {
+			$(this).css("background-color", "#ffffff");
+		});
+		$("#loginId").focus();
 	});
 </script>
 </head>
@@ -24,24 +36,41 @@
 
 
 		<div id="login">
+			<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+				<font color="red"> Your login attempt was not successful due
+					to <br />
+				<br /> <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+				</font>
+				<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
+				<script>
+					// query string 제거
+					history.replaceState({}, null, location.pathname);
+				</script>
+			</c:if>
 			<h1>로그인 페이지</h1>
-			<form id="loginBlock" name="loginBlock" action="#" method="post">
+			<form id="frmLogin" name="frmLogin" action="${_ctx}/security/login"
+				method="post">
 
 				<dl>
 					<dt>id</dt>
 					<dd>
-						<input type="text" id="userId" name="id" placeholder="User ID" title="ID" />
+
+						<input type="text" id="loginId" name="loginId"
+							placeholder="User ID" data-msg-required="야 필수다 알았냐"
+							required="required" />
+						<!-- data-msg-minlength : 야 자리수는 {0}이다. -->
 					</dd>
 					<dt>pw</dt>
 					<dd>
-						<input type="password" name="pw" placeholder="Password" title="pw">
+						<input type="password" name="loginPw" placeholder="Password"
+							required="required">
 					</dd>
 				</dl>
 
-				<a href="${_ctx}/list.html" class="loginBtn">로그인</a> 
-				<a href="${_ctx}/join.sc" class="joinBtn">회원가입</a>
-				<a href="${_ctx}/find.sc">아이디 찾기</a> 
-				<a href="${_ctx}/find.sc">비밀번호 찾기</a> 
+				<a href="javascript:;" class="loginBtn" id="btnLogin">로그인</a> <a
+					href="${_ctx}/join.god" class="joinBtn">회원가입</a> <a
+					href="${_ctx}/find.god">아이디 찾기</a> <a href="${_ctx}/find.god">비밀번호
+					찾기</a>
 
 			</form>
 

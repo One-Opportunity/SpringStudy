@@ -20,13 +20,13 @@ public class JoinController {
 	int result = 0;
 
 	// 회원가입 페이지로 이동(GET과 POST로 구분)
-	@RequestMapping(value = "/join.sc", method = RequestMethod.GET)
+	@RequestMapping(value = "/join.god", method = RequestMethod.GET)
 	public void gojoin() {
 	}
 
 	// 회원가입
 	@ResponseBody
-	@RequestMapping(value = "/join.sc", method = RequestMethod.POST)
+	@RequestMapping(value = "/join.god", method = RequestMethod.POST)
 	public String dojoin(UserDTO userDTO) {
 		log.debug("userDTO =========>" + userDTO);
 		userService.write(userDTO);
@@ -40,7 +40,7 @@ public class JoinController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/check/id.sc", method = RequestMethod.GET)
+	@RequestMapping(value = "/check/id.god", method = RequestMethod.GET)
 	public ResponseDTO checkId(String loginId) {
 		log.debug("loginId =>>>>>>" + loginId);
 		ResponseDTO responseDTO = new ResponseDTO();
@@ -60,7 +60,7 @@ public class JoinController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/check/phone.sc", method = RequestMethod.GET)
+	@RequestMapping(value = "/check/phone.god", method = RequestMethod.GET)
 	public ResponseDTO checkPhone(String phone) {
 		ResponseDTO responseDTO = new ResponseDTO();
 
@@ -80,7 +80,7 @@ public class JoinController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/check/email.sc", method = RequestMethod.GET)
+	@RequestMapping(value = "/check/email.god", method = RequestMethod.GET)
 	public ResponseDTO checkEmail(String email) {
 		ResponseDTO responseDTO = new ResponseDTO();
 		try {

@@ -1,8 +1,6 @@
 package kr.co.jwo.user.dao.impl;
 
 import org.apache.ibatis.session.SqlSession;
-import org.junit.experimental.theories.Theories;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.jwo.common.dao.BaseDaoSupport;
@@ -49,6 +47,12 @@ public class UserDAOImpl extends BaseDaoSupport implements IUserDAO{
 	@Override
 	public int selectCountByPhone(String phone) {
 		return this.getSqlSession().selectOne("user.selectCountByPhone", phone);
+	}
+
+	@Override
+	public UserDTO selectOneByLoginId(String loginId) {
+		
+		return this.getSqlSession().selectOne("user.selectByLoginId", loginId);
 	}
 
 }

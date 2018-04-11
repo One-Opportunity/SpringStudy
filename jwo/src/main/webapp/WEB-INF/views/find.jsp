@@ -29,13 +29,13 @@
   
   	<input type="email" id="email" name="email" placeholder="이메일" maxlength="20" style="width: 350px; margin-bottom: 15px; height: 40px; padding: 0 9px 0 9px; border: 1px solid #B4B4B4; border-radius: 5px;" required /> <br/>
   	<a href="#" id="findLogin" class="checkId" style="color: white;">아이디 찾기</a> 
-	<a href="${_ctx}/index.sc" id="findLogin_x" class="checkId" style="color: white;">취소하기</a>
+	<a href="${_ctx}/index.god" id="findLogin_x" class="checkId" style="color: white;">취소하기</a>
   </div>
   <div id="tabs-2">
   	<input type="text" id="loginId" name="loginId" placeholder="아이디" maxlength="15" minlength="6" style="width: 350px; height: 40px; margin-bottom: 15px; padding: 0 9px 0 9px; border: 1px solid #B4B4B4; border-radius: 5px;" required /> <br/>
   	<input type="email" id="email" name="email" placeholder="이메일" maxlength="20" style="width: 350px; height: 40px; padding: 0 9px 0 9px; margin-bottom: 15px; border: 1px solid #B4B4B4; border-radius: 5px;" required /> <br />
   	<a href="#" id="findLogin" class="checkId" style="color: white;">비밀번호 찾기</a> 
-	<a href="${_ctx}/index.sc" id="findLogin_x" class="checkId" style="color: white;">취소하기</a>
+	<a href="${_ctx}/index.god" id="findLogin_x" class="checkId" style="color: white;">취소하기</a>
   </div>
 </div>
 </body>

@@ -18,7 +18,7 @@
 	<!-- 	@ResponseBody로 할 경우 아래 경로가 아닌 json view 경로를 탄다 -->
 	<!-- 	json view -->
 	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
-	
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
