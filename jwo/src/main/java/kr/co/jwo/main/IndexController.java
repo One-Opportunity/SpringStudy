@@ -15,6 +15,11 @@ public class IndexController {
 	
 	
 	@Autowired private IUserService userService = null;
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public String index1() {
+		return "redirect:/login.god";
+		
+	}
 	@RequestMapping(value="/index.god", method=RequestMethod.GET)
 	public String index() {
 		return "redirect:/login.god";

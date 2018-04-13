@@ -10,4 +10,8 @@ public class UserController {
 	@Autowired IUserService userService = null;
 	
 	
+	
+	public void view() {
+		
+	}
 }

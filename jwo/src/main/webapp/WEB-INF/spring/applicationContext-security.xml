@@ -4,7 +4,8 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
          http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
- <global-method-security secured-annotations="enabled" pre-post-annotations="enabled">
+ <global-method-security secured-annotations="enabled" 
+ 	pre-post-annotations="enabled">
   <expression-handler ref="methodSecurityExpressionHandler"/>
  </global-method-security>
 
@@ -23,6 +24,7 @@
   <intercept-url pattern="/find.god" access="permitAll"/>
   <intercept-url pattern="/captcha/*" access="permitAll"/>
   <intercept-url pattern="/security/login" access="permitAll"/>
+  <intercept-url pattern="/board/map/*" access="permitAll"/>
   <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
  
 <!--  	
@@ -40,6 +42,7 @@
 	   authentication-failure-url="/login.god?error=1"
 	   username-parameter="loginId" 
 	   password-parameter="loginPw"
+	   authentication-success-handler-ref="authenticationSuccess"
    />
    <!-- 
    	max-sessions 				: 값이 1일 경우 1명만 접속 2일경우 2명까지 접속 가능 
@@ -54,6 +57,7 @@
  </http>
  
  <!-- bean 등록 -->
+ <beans:bean id="authenticationSuccess" class="kr.co.jwo.common.security.AuthenticationSuccess"></beans:bean>
  <beans:bean id="userDetailService" class="kr.co.jwo.common.security.UserDetailService"/>
 
  <!-- 나중에 설명 -->

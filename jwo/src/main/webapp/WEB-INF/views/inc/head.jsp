@@ -23,5 +23,6 @@
 <script type="text/javascript" src="${_ctx}/res/js/validate/additional-methods.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/validate/localization/messages_ko.min.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/validate/meiomask.js"></script>
+<script type="text/javascript" src="${_ctx}/res/js/dtree/dtree.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/main.js"></script>
     
