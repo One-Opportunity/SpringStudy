@@ -17,8 +17,5 @@ public class MainController {
 	@RequestMapping(value="/main/index.god", method=RequestMethod.GET)
 	public void index() {
 		
-		
 	}
-
-
 }
