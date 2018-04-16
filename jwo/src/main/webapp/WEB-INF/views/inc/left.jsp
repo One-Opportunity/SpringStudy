@@ -3,7 +3,7 @@
 	$(function() {
 		loadTreeMap();
 	});
-
+	
 	// 통합맵 가져오기
 	function loadTreeMap() {
 		d = new dTree('d');
@@ -14,14 +14,12 @@
 						function(index) {
 							console.log(this);
 							if (this.parMapId == null) {
-								d.add(this.mapId, -1, this.mapName,
-										"javascript:;");
+								d.add(this.mapId, -1, this.mapName, "javascript:;");
 							} else {
-								d.add(this.mapId, this.parMapId, this.mapName,
-										"${_ctx}/board/doc/list.god?mapId=" + this.mapId);
+								d.add(this.mapId, this.parMapId, this.mapName, "${_ctx}/board/doc/list.god?mapId=" + this.mapId);
 							}
 						});
-				console.log(d.toString());
+// 				console.log(d.toString());
 				$("#dtree").html(d.toString());
 			}
 		});

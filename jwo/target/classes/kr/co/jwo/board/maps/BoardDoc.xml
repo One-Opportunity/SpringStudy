@@ -11,6 +11,8 @@
 		,MAP_ID
 		,TITLE
 		,BOARD_CONTENTS
+		,CNT_READ
+		,REG_DT
 		)
 		VALUES
 		(
@@ -19,6 +21,8 @@
 		,#{mapId}
 		,#{title}
 		,#{boardContents}
+		,0
+		,SYSDATE
 		)
 	</insert>
 
@@ -47,6 +51,7 @@
 		SELECT * 
 		FROM TB_BOARD_DOC
 		WHERE MAP_ID = #{mapId}
+		ORDER BY DOC_ID DESC
 	</select>
 
 </mapper>
