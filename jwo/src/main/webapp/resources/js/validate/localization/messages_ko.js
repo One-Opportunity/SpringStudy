@@ -30,6 +30,6 @@ $.extend( $.validator.messages, {
 	range: $.validator.format( "{0} 에서 {1} 사이의 값을 입력하세요." ),
 	max: $.validator.format( "{0} 이하의 값을 입력하세요." ),
 	min: $.validator.format( "{0} 이상의 값을 입력하세요." )
-} );
+});
 return $;
 }));

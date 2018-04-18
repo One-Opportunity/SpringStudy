@@ -1,5 +1,10 @@
 package kr.co.jwo.board.dto;
 
-public class BoardSearchDTO {
+import lombok.Data;
 
+@Data
+public class BoardSearchDTO {
+	private Integer mapId = null;	// 맵ID
+	private String 	searchText = null,
+					searchType = null;
 }

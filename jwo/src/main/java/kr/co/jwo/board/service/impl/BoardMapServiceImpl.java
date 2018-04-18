@@ -20,4 +20,9 @@ public class BoardMapServiceImpl implements IBoardMapService{
 		return boardMapDAO.selectList();
 	}
 
+	@Override
+	public BoardMapDTO view(int mapId) {
+		return boardMapDAO.selectOne(mapId);
+	}
+
 }

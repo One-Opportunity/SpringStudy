@@ -1,25 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <c:import url="/WEB-INF/views/inc/head.jsp" />
 <script>
-$(function(){
-	var mapId = $("#mapId").val();
-	$("#btnWrite").click(function(){
-		console.log(mapId);
-		document.location.href = "${_ctx}/board/doc/write.god?mapId=" + mapId;
+	$(function() {
+		
+		//검색유지
+		$("#searchType > option[value='${search.searchType}']").attr("selected", true);
+		var mapId = $("#mapId").val();
+		$("#btnWrite")
+				.click(
+						function() {
+							console.log(mapId);
+							document.location.href = "${_ctx}/board/doc/write.god?mapId="
+									+ mapId;
+						});
 	});
-	
-});
-
 </script>
 </head>
 
 <body>
-	
-	
+
+
 	<div id="wrap">
 
 		<c:import url="/WEB-INF/views/inc/header.jsp" />
@@ -29,36 +34,27 @@ $(function(){
 
 			<div class="rightBlock">
 				<div class="page_top">
-					<h1>목록 페이지</h1>
+					<h1>${mapDTO.mapName}</h1>
 				</div>
-
+				
+				
 				<!-- 검색 시작 -->
-				<form id="searchEngine" method="post" name="searchEngine" action="#" target="_self" title="검색" class="search_area">
-				<input type="hidden" name="mapId" id="mapId" value="${mapId}"/>
+				<form id="frmSearch" method="get" name="frmSearch" action="${_ctx}/board/doc/list.god" class="search_area">
+					<input type="hidden" name="mapId" id="mapId" value="${mapDTO.mapId}" />
 					<dl>
-						<dt>input[type=radio]</dt>
 						<dd>
-							<label for="radio1"><input type="radio" id="radio1"> radio1</label> <label for="radio2"><input type="radio" id="radio2">
-									radio2</label> <label for="radio3"><input type="radio" id="radio3"> radio3</label>
-						</dd>
-						<dt>input[type=check]</dt>
-						<dd>
-							<label for="check1"><input type="checkbox" id="check1"> check1</label> <label for="check2"><input type="checkbox" id="check2">
-									check1</label> <label for="check3"><input type="checkbox" id="check3"> check3</label>
-						</dd>
-						<dt>input[type=text]</dt>
-						<dd>
-							<input type="text" id="text1" placeholder="글자입력" title="입력">
-						</dd>
-						<dt>select</dt>
-						<dd>
-							<select name="select" title="선택">
-								<option value="select1">select1</option>
-								<option value="select2">select2</option>
-								<option value="select3">select3</option>
+							
+							<select name="searchType" id="searchType" style="height: 23px;">
+								<option value="">:: 검색조건 ::</option>
+								<option value="T">제목</option>
+								<option value="C">내용</option>
+								<option value="TC">제목+내용</option>
+								<option value="U">작성자</option>
 							</select>
 						</dd>
-						<dt>input[type=submit]</dt>
+						<dd>
+							<input type="text" name="searchText" placeholder="검색어" style="height: 20px;" value="${search.searchText}"/>
+						</dd>
 						<dd>
 							<input type="submit" title="입력">
 						</dd>
@@ -71,11 +67,11 @@ $(function(){
 					<table class="base_tbl">
 						<thead>
 							<tr>
-								<th width="8%">Num</th>
-								<th>Subject</th>
-								<th width="15%">date</th>
-								<th width="10%">file</th>
-								<th width="10%">view</th>
+								<th width="8%">번호</th>
+								<th>제목</th>
+								<th width="15%">등록일자</th>
+								<th width="10%">첨부파일</th>
+								<th width="10%">조회수</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -83,13 +79,13 @@ $(function(){
 								<tr>
 									<td>${item.docId}</td>
 									<td class="txtCut alignLeft"><a href="#">${item.title}</a></td>
-									<td>${item.regDt}</td>
+									<td><fmt:formatDate value="${item.regDt}" pattern="yyyy-MM-dd" /></td>
 									<td>N</td>
-									<td>${item.cntRead}</td>
+									<td><fmt:formatNumber value="${item.cntRead}"/></td>
 								</tr>
 							</c:forEach>
 						</tbody>
-						
+
 					</table>
 
 					<div class="btnSet">
