@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import kr.co.jwo.board.dao.IBoardDocDAO;
 import kr.co.jwo.board.dto.BoardDocDTO;
-import kr.co.jwo.board.dto.BoardSearchDTO;
 import kr.co.jwo.board.service.IBoardDocService;
 
 @Service
@@ -35,8 +34,8 @@ public class BoardDocServiceImpl implements IBoardDocService{
 	}
 
 	@Override
-	public List<BoardDocDTO> list(BoardSearchDTO boardSearchDTO) {
-		return documentDAO.selectList(boardSearchDTO);
+	public List<BoardDocDTO> list(Integer mapId) {
+		return documentDAO.selectList(mapId);
 	}
 	
 }

@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.jwo.board.dto.BoardDocDTO;
-import kr.co.jwo.board.dto.BoardMapDTO;
-import kr.co.jwo.board.dto.BoardSearchDTO;
 import kr.co.jwo.board.service.IBoardDocService;
-import kr.co.jwo.board.service.IBoardMapService;
 import kr.co.jwo.user.dto.UserDTO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,20 +24,16 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardDocController {
 
 	@Autowired private IBoardDocService boardDocService = null;
-	@Autowired private IBoardMapService mapService = null;
 	/**
 	 * 게시판 목록
 	 */
 	@RequestMapping(value="/list.god", method=RequestMethod.GET)
-	public void list(Model model, BoardSearchDTO search) {
-		log.debug("/board/doc/list.god/의 search확인!!!!" + search);
-		List<BoardDocDTO> list = boardDocService.list(search);
+	public void list(Model model, Integer mapId) {
+		List<BoardDocDTO> list = boardDocService.list(mapId);
 		model.addAttribute("list", list);
-		model.addAttribute("search", search.getMapId());
-		BoardMapDTO boardMapDTO = mapService.view(search.getMapId());
-		model.addAttribute("mapDTO", boardMapDTO);
+		model.addAttribute("mapId", mapId);
+		
 	}
-	
 	
 	@RequestMapping(value="/write.god", method=RequestMethod.GET)
 	public void goWrite(Model model, Integer mapId) {

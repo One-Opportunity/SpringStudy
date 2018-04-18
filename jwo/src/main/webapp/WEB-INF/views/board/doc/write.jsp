@@ -29,14 +29,13 @@ $(document).ready(function(){
     
     	<div class="rightBlock">
             <div class="page_top">
-                <h1>자바  기</h1>
+                <h1>Page Title</h1>
             </div>
             
             <div class="boardWrap">
-            			
-            
                 <form id="frmWrite" name="frmWrite" action="${_ctx}/board/doc/write.god" method="post">
                 
+                <input type="hidden" name="mapId" id="mapId" value="${mapId}"/>
                 
                 <table class="base_tbl tbl_write">
                 	<tbody><tr>

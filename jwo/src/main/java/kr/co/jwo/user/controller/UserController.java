@@ -9,4 +9,9 @@ import kr.co.jwo.user.service.IUserService;
 public class UserController {
 	@Autowired IUserService userService = null;
 	
+	
+	
+	public void view() {
+		
+	}
 }
