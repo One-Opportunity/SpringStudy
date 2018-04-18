@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.jwo.board.dao.IBoardDocDAO;
 import kr.co.jwo.board.dto.BoardDocDTO;
+import kr.co.jwo.board.dto.BoardSearchDTO;
 import kr.co.jwo.common.dao.BaseDaoSupport;
 
 @Repository
@@ -34,8 +35,8 @@ public class BoardDocDAOImpl extends BaseDaoSupport implements IBoardDocDAO{
 	}
 
 	@Override
-	public List<BoardDocDTO> selectList(Integer mapId) {
-		return this.getSqlSession().selectList("BoardDoc.selectListByMapId", mapId);
+	public List<BoardDocDTO> selectList(BoardSearchDTO boardSearchDTO) {
+		return this.getSqlSession().selectList("BoardDoc.selectListByMapId", boardSearchDTO);
 	}
 
 	

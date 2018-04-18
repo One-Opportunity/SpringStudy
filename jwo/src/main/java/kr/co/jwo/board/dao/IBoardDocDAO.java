@@ -3,6 +3,7 @@ package kr.co.jwo.board.dao;
 import java.util.List;
 
 import kr.co.jwo.board.dto.BoardDocDTO;
+import kr.co.jwo.board.dto.BoardSearchDTO;
 
 public interface IBoardDocDAO {
 	
@@ -10,5 +11,5 @@ public interface IBoardDocDAO {
 	public void update(BoardDocDTO documentDTO);
 	public void delete(int docId);
 	public BoardDocDTO selectOne(int docId);
-	public List<BoardDocDTO> selectList(Integer mapId);
+	public List<BoardDocDTO> selectList(BoardSearchDTO boardSearchDTO);
 }

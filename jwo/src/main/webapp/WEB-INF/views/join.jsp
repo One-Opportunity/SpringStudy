@@ -78,7 +78,6 @@
 
 						//phone 중복체크 안됨
 						$("#checkedPhone").val("N");
-
 					}
 				})
 			}

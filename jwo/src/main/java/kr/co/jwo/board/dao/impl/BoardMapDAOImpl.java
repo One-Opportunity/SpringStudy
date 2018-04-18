@@ -16,4 +16,9 @@ public class BoardMapDAOImpl extends BaseDaoSupport implements IBoardMapDAO{
 		return this.getSqlSession().selectList("BoardMap.selectList");
 	}
 
+	@Override
+	public BoardMapDTO selectOne(int mapId) {
+		return this.getSqlSession().selectOne("BoardMap.selectOne", mapId);
+	}
+
 }

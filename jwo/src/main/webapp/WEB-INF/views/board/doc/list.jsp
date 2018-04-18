@@ -5,21 +5,23 @@
 <head>
 <c:import url="/WEB-INF/views/inc/head.jsp" />
 <script>
-$(function(){
-	var mapId = $("#mapId").val();
-	$("#btnWrite").click(function(){
-		console.log(mapId);
-		document.location.href = "${_ctx}/board/doc/write.god?mapId=" + mapId;
-	});
-	
-});
+	$(function() {
+		var mapId = $("#mapId").val();
+		$("#btnWrite")
+				.click(
+						function() {
+							console.log(mapId);
+							document.location.href = "${_ctx}/board/doc/write.god?mapId="
+									+ mapId;
+						});
 
+	});
 </script>
 </head>
 
 <body>
-	
-	
+
+
 	<div id="wrap">
 
 		<c:import url="/WEB-INF/views/inc/header.jsp" />
@@ -29,36 +31,26 @@ $(function(){
 
 			<div class="rightBlock">
 				<div class="page_top">
-					<h1>목록 페이지</h1>
+					<h1>${mapDTO.mapName}</h1>
 				</div>
-
+				
+				
 				<!-- 검색 시작 -->
-				<form id="searchEngine" method="post" name="searchEngine" action="#" target="_self" title="검색" class="search_area">
-				<input type="hidden" name="mapId" id="mapId" value="${mapId}"/>
+				<form id="frmSearch" method="get" name="frmSearch" action="${_ctx}/board/doc/list.god" class="search_area">
+					<input type="hidden" name="mapId" id="mapId" value="${mapDTO.mapId}" />
 					<dl>
-						<dt>input[type=radio]</dt>
 						<dd>
-							<label for="radio1"><input type="radio" id="radio1"> radio1</label> <label for="radio2"><input type="radio" id="radio2">
-									radio2</label> <label for="radio3"><input type="radio" id="radio3"> radio3</label>
-						</dd>
-						<dt>input[type=check]</dt>
-						<dd>
-							<label for="check1"><input type="checkbox" id="check1"> check1</label> <label for="check2"><input type="checkbox" id="check2">
-									check1</label> <label for="check3"><input type="checkbox" id="check3"> check3</label>
-						</dd>
-						<dt>input[type=text]</dt>
-						<dd>
-							<input type="text" id="text1" placeholder="글자입력" title="입력">
-						</dd>
-						<dt>select</dt>
-						<dd>
-							<select name="select" title="선택">
-								<option value="select1">select1</option>
-								<option value="select2">select2</option>
-								<option value="select3">select3</option>
+							<select name="searchType" style="height: 23px;">
+								<option value="T">:: 검색조건 ::</option>
+								<option value="T">제목</option>
+								<option value="C">내용</option>
+								<option value="TC">제목+내용</option>
+								<option value="U">작성자</option>
 							</select>
 						</dd>
-						<dt>input[type=submit]</dt>
+						<dd>
+							<input type="text" name="searchText" placeholder="검색어" style="height: 20px;"/>
+						</dd>
 						<dd>
 							<input type="submit" title="입력">
 						</dd>
@@ -89,7 +81,7 @@ $(function(){
 								</tr>
 							</c:forEach>
 						</tbody>
-						
+
 					</table>
 
 					<div class="btnSet">

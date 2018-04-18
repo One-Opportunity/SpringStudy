@@ -9,4 +9,9 @@
 	ORDER BY MAP_ID
 </select>
 
+<select id="selectOne" parameterType="int" resultType="kr.co.jwo.board.dto.BoardMapDTO">
+	SELECT * FROM TB_BOARD_MAP
+	WHERE MAP_ID = #{mapId}
+
+</select>
 </mapper>
