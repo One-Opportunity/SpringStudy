@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <script type="text/javascript">
 	$(function() {
 		loadTreeMap();
@@ -31,8 +33,9 @@
 <div id="leftWrap">
 	<div id="infoWrap">
 		<div class="info_txt">
+			<p class="info_name">${_user.loginId}</p>
 			<p class="info_name">${_user.name}</p>
-			<p class="info_date">${_user.regDt}</p>
+			<p class="info_date"><fmt:formatDate value="${_user.regDt}" pattern="yyyy.MM.dd HH시 mm분"/> </p>
 			<p class="info_pic">
 				<img src="${_ctx}/res/images/thum_img.jpg" alt="thum">
 			</p>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="pagetag" uri="/WEB-INF/tlds/pagetag.tld"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,14 +13,29 @@
 		//검색유지
 		$("#searchType > option[value='${search.searchType}']").attr("selected", true);
 		var mapId = $("#mapId").val();
+		
+		
 		$("#btnWrite")
-				.click(
-						function() {
+				.click(function() {
 							console.log(mapId);
 							document.location.href = "${_ctx}/board/doc/write.god?mapId="
 									+ mapId;
 						});
+
 	});
+	
+	// 페이지 이동
+	function goPage(page){
+	$("#page").val(page);
+	$("#frmSearch").submit();
+	}
+	
+	// 조회페이지 이동
+	function goView(docId){
+		$("#docId").val(docId);
+		$("#frmView").submit();
+	}
+	
 </script>
 </head>
 
@@ -41,6 +58,7 @@
 				<!-- 검색 시작 -->
 				<form id="frmSearch" method="get" name="frmSearch" action="${_ctx}/board/doc/list.god" class="search_area">
 					<input type="hidden" name="mapId" id="mapId" value="${mapDTO.mapId}" />
+					<input type="hidden" name="page" id="page" value="${search.page}" />
 					<dl>
 						<dd>
 							
@@ -56,7 +74,9 @@
 							<input type="text" name="searchText" placeholder="검색어" style="height: 20px;" value="${search.searchText}"/>
 						</dd>
 						<dd>
-							<input type="submit" title="입력">
+						<div class="btnSet">
+							<a href="javascript:goPage('1');" class="disPB btnBase" style="padding: 5px">검색</a>
+						</div>
 						</dd>
 					</dl>
 				</form>
@@ -78,8 +98,12 @@
 							<c:forEach items="${list}" var="item">
 								<tr>
 									<td>${item.docId}</td>
-									<td class="txtCut alignLeft"><a href="#">${item.title}</a></td>
-									<td><fmt:formatDate value="${item.regDt}" pattern="yyyy-MM-dd" /></td>
+									<td class="txtCut alignLeft">
+									
+									<a href="javascript:goView('${item.docId}');">${item.title}</a>
+<%-- 									<a href="${_ctx}/board/doc/view.god?docId=${item.docId}&${search.params}"></a> --%>
+									</td>
+									<td><fmt:formatDate value="${item.regDt}" pattern="yyyy.MM.dd. HH시 mm분 " /></td>
 									<td>N</td>
 									<td><fmt:formatNumber value="${item.cntRead}"/></td>
 								</tr>
@@ -91,15 +115,26 @@
 					<div class="btnSet">
 						<a href="javascript:;" id="btnWrite" class="disPB btnBase">글쓰기</a>
 					</div>
-					<div id="paging">
-						<p>
-							<span class="numPN"><a href="#">«</a></span> <span class="numPN over left"><a href="#">&lt;</a></span> <span class="Present"><a href="#">1</a></span>
-							<span><a href="#">2</a></span> <span><a href="#">3</a></span> <span><a href="#">4</a></span> <span><a href="#">5</a></span> <span><a
-								href="#">6</a></span> <span><a href="#">7</a></span> <span><a href="#">8</a></span> <span><a href="#">9</a></span> <span class="dubble"><a
-								href="#">10</a></span> <span class="numPN over right"><a href="#">&gt;</a></span> <span class="numPN"><a href="#">»</a></span>
+					<pagetag:paging page="${search}" />
+<!-- 					<div id="paging"> -->
+<!-- 						<p> -->
+<!-- 							<span class="numPN"><a href="#">«</a></span>  -->
+<!-- 							<span class="numPN over left"><a href="#">&lt;</a></span>  -->
+<!-- 							<span class="Present"><a href="#">1</a></span> -->
+<!-- 							<span><a href="#">2</a></span>  -->
+<!-- 							<span><a href="#">3</a></span>  -->
+<!-- 							<span><a href="#">4</a></span>  -->
+<!-- 							<span><a href="#">5</a></span>  -->
+<!-- 							<span><a href="#">6</a></span>  -->
+<!-- 							<span><a href="#">7</a></span>  -->
+<!-- 							<span><a href="#">8</a></span>  -->
+<!-- 							<span><a href="#">9</a></span>  -->
+<!-- 							<span class="dubble"><a href="#">10</a></span>  -->
+<!-- 							<span class="numPN over right"><a href="#">&gt;</a></span>  -->
+<!-- 							<span class="numPN"><a href="#">»</a></span> -->
 
-						</p>
-					</div>
+<!-- 						</p> -->
+<!-- 					</div> -->
 
 
 				</div>
@@ -107,6 +142,11 @@
 
 		</div>
 	</div>
-
+<form id="frmView" method="get" name="frmView" action="${_ctx}/board/doc/view.god" class="search_area">
+	<input type="hidden" name="docId" id="docId"/>
+	<input type="hidden" name="mapId" id="mapId" value="${mapDTO.mapId}" />
+	<input type="hidden" name="page" id="page" value="${search.page}" />
+	<input type="hidden" name="searchType" id="searchType" value="${search.searchType}" />
+	<input type="hidden" name="searchText" id="searchText" value="${search.searchText}" />
 </body>
 </html>

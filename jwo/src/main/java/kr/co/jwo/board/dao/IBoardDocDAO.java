@@ -12,4 +12,5 @@ public interface IBoardDocDAO {
 	public void delete(int docId);
 	public BoardDocDTO selectOne(int docId);
 	public List<BoardDocDTO> selectList(BoardSearchDTO boardSearchDTO);
+	public Integer selectCount(BoardSearchDTO boardSearchDTO);
 }

@@ -16,7 +16,6 @@ public class PageTag extends TagSupport {
 	
 	@Override
 	public int doStartTag() throws JspException {
-		// TODO Auto-generated method stub
 		
         if (page == null) {
             return SKIP_BODY;
@@ -26,7 +25,6 @@ public class PageTag extends TagSupport {
         try {
 			pageContext.getOut().println(content);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return SKIP_BODY;
@@ -49,6 +47,7 @@ public class PageTag extends TagSupport {
 		this.page = page;
 	}
 	
+	// 수정해야할 소스
 	private String paging(String path, int totalCnt, int rowRange, int pageRange, int curPage, String script) {
 		
 		if( script.isEmpty() )
@@ -76,20 +75,20 @@ public class PageTag extends TagSupport {
 		
 		sb.append("<div id=\"paging\">\n<p>\n");
 		
-		// 맨처음
+		// 맨처음 (짝대기 2개 '<<')
 		long firstPage = curPage - pageRange;
 		if( firstPage > 0 ) {
 			sb.append("<span class=\"numPN\">");
 			sb.append("<a href=\"javascript:"+script+"('1');\" val='1'>&#171;</a></span>");
 		}
 		
-		// 이전
+		// 이전 (짝대기 1개 '<')
 		if( curPage > 1 ) {
 			sb.append("<span class=\"numPN over left\">");
 			sb.append("<a href=\"javascript:"+script+"('").append(curPage-1).append("');\" val='1'>&#60;</a></span>");
 		}
 		
-		// 페이징
+		// 페이징 (1,2,3,4....)
 		for( long i = rangeCnt * pageRange + 1L ; i < (rangeCnt + 1L) * pageRange + 1L ; i++) {
 			
 			if( i == curPage )
@@ -98,23 +97,20 @@ public class PageTag extends TagSupport {
 				sb.append("<span class=\"dubble\"><a href=\"javascript:"+script+"('").append(i).append("');\" val='").append(i).append("'>").append(i).append("</a></span>");
 			else
 				sb.append("<span><a href=\"javascript:"+script+"('").append(i).append("');\" val='").append(i).append("'>").append(i).append("</a></span>");
-			
-
 			if( i == pageCnt )
 				break;
 		}
 		
-        
 		long page = (rangeCnt+1L) * pageRange + 1L;
 		if( page > pageCnt )	page = pageCnt;
-
 		
-		// 다음
+		// 다음 ('>')
 		if( curPage >= 1 && totalCnt > 1 && curPage != pageCnt ) {
 			sb.append("<span class=\"numPN over right\">");
 			sb.append("<a href=\"javascript:"+script+"('").append(curPage+1).append("');\" val='1'>&#62;</a></span>");
 		}
 		
+		// 맨뒤 ('>>')
 		if( totalPage < pageCnt ) {
 			sb.append("<span class=\"numPN\">");
 			sb.append("<a href=\"javascript:"+script+"('").append(totalPage).append("');\" val='1'>&#171;</a></span>");

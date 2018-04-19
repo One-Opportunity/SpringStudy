@@ -36,6 +36,11 @@ public class BoardDocServiceImpl implements IBoardDocService{
 
 	@Override
 	public List<BoardDocDTO> list(BoardSearchDTO boardSearchDTO) {
+		// 1. 총 게시물 갯수 count
+		boardSearchDTO.setTotal(documentDAO.selectCount(boardSearchDTO));
+		
+		// 2. 게시물 목록 가져오기
+		
 		return documentDAO.selectList(boardSearchDTO);
 	}
 	
