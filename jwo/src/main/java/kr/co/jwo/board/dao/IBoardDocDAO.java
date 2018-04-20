@@ -13,4 +13,5 @@ public interface IBoardDocDAO {
 	public BoardDocDTO selectOne(int docId);
 	public List<BoardDocDTO> selectList(BoardSearchDTO boardSearchDTO);
 	public Integer selectCount(BoardSearchDTO boardSearchDTO);
+	public void updateByCntRead(int docId);
 }

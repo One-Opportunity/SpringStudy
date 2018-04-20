@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.jwo.board.dto.BoardCommentDTO;
 import kr.co.jwo.board.dto.BoardDocDTO;
 import kr.co.jwo.board.dto.BoardMapDTO;
 import kr.co.jwo.board.dto.BoardSearchDTO;
+import kr.co.jwo.board.service.IBoardCommentService;
 import kr.co.jwo.board.service.IBoardDocService;
 import kr.co.jwo.board.service.IBoardMapService;
 import kr.co.jwo.user.dto.UserDTO;
@@ -29,6 +31,7 @@ public class BoardDocController {
 
 	@Autowired private IBoardDocService boardDocService = null;
 	@Autowired private IBoardMapService mapService = null;
+	@Autowired private IBoardCommentService commentService = null;
 	/**
 	 * 게시판 목록
 	 */
@@ -55,10 +58,11 @@ public class BoardDocController {
 	}
 	
 	
-	@RequestMapping(value="/write.god", method=RequestMethod.POST)
-	public void goUpdate(Model model, String boardContents, String title) {
-		log.debug("업데이트화면 boardContents와 title 가져오기~~~~~>>>>>" + boardContents + ", " + title);
-	}
+//	@ResponseBody
+//	@RequestMapping(value="/write.god", method=RequestMethod.GET)
+//	public void goUpdate(Model model, String boardContents, String title, Integer mapId) {
+//		log.debug("업데이트화면 boardContents와 title 가져오기~~~~~>>>>>" + boardContents + ", " + title);
+//	}
 	
 	@ResponseBody
 	@RequestMapping(value="/write.god", method=RequestMethod.POST)
@@ -71,14 +75,26 @@ public class BoardDocController {
 		log.debug("====@@@@@@@@@@@@@@  boardDocDTO  @@@@@@@@@@@@@@@@@@@@@@@@ =====>>" + boardDocDTO);
 	}
 	
+	/**
+	 * 조회
+	 * @param model
+	 * @param search
+	 * @param docId
+	 */
 	@RequestMapping(value="/view.god", method=RequestMethod.GET)
-	public void view(Model model, BoardSearchDTO search, Integer docId) {
+	public void view(Model model, @ModelAttribute("search") BoardSearchDTO search, Integer docId) {
+		//통합맵 정보 가져오기
+		BoardMapDTO boardMapDTO = mapService.view(search.getMapId());
+		model.addAttribute("mapDTO", boardMapDTO);
+		
 		log.debug("view의  search" + search);
+		
 		BoardDocDTO docDTO = boardDocService.view(docId);
 		log.debug("view의 docDTO  >>>>>" + docDTO);
 		model.addAttribute("docDTO", docDTO);
-		model.addAttribute("search", search);
-		
-		
 	}
+	
+	
+
+
 }

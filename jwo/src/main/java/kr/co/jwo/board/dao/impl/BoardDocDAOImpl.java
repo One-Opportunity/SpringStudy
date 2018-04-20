@@ -44,6 +44,11 @@ public class BoardDocDAOImpl extends BaseDaoSupport implements IBoardDocDAO{
 		return this.getSqlSession().selectOne("BoardDoc.selectCount", boardSearchDTO);
 	}
 
+	@Override
+	public void updateByCntRead(int docId) {
+		this.getSqlSession().update("BoardDoc.updateByCntRead", docId);
+	}
+
 	
 	
 }

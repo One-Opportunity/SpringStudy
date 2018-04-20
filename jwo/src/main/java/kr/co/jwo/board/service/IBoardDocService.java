@@ -9,6 +9,7 @@ public interface IBoardDocService {
 	public void add(BoardDocDTO documentDTO);
 	public void edit(BoardDocDTO documentDTO);
 	public void remove(int docId);
+	public void editByCntRead(int docId);
 	public BoardDocDTO view(int docId);
 	public List<BoardDocDTO> list(BoardSearchDTO boardSearchDTO);
 }

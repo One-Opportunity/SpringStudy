@@ -113,6 +113,11 @@
 		WHERE RN <![CDATA[ > ]]> (#{page}-1) * #{rows}
 		
 	</select>
-
+	<update id="updateByCntRead" parameterType="int">
+	UPDATE TB_BOARD_DOC 
+	SET CNT_READ = CNT_READ+1 
+	WHERE DOC_ID = #{docId}
+	
+	</update>
 
 </mapper>
