@@ -31,4 +31,9 @@ public class UserDAOImpl extends BaseDaoSupport implements IUserDAO{
 	public int selectCountByPhone(String phone) {
 		return this.getSqlSession().selectOne("user.selectCountByPhone", phone);
 	}
+	
+	@Override
+	public UserDTO selectByLoginId(String loginId) {
+		return this.getSqlSession().selectOne("user.selectByLoginId", loginId);
+	}
 }

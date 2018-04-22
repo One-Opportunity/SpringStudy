@@ -8,4 +8,5 @@ public interface IUserService {
 	public int viewCountByLoginId(String loginId);
 	public int viewCountByEmail(String email);
 	public int viewCountByPhone(String phone);
+	public UserDTO viewByLoginId(String loginId);
 }

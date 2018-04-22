@@ -52,11 +52,10 @@ public class BoardCommentController {
 		log.debug("list 나와라!!!!!!!!!!!!!!!!!>>>" + list);
 	}
 	
-	@ResponseBody
 	@RequestMapping(value="/list.god", method=RequestMethod.POST)
-	public void delete(Model model, @ModelAttribute("commentId") Integer commentId ) {
+	public void delete( Integer commentId) {
 		log.debug("commentId 가져오기" + commentId);
-		commentService.remove(commentId);
+		commentService.remove(commentId); 
 		
 	}
 }

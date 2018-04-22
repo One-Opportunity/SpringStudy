@@ -43,5 +43,10 @@
   FROM TB_USER
   WHERE EMAIL = #{email}
  </select>
-
+ 
+ <select id="selectByLoginId" parameterType="String" resultType="kr.co.starbucks.user.dto.UserDTO">
+  SELECT *
+  FROM TB_USER
+  WHERE LOGIN_ID= #{loginId}
+ </select>
 </mapper>

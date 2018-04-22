@@ -1,4 +1,4 @@
-package kr.co.starbucks;
+package kr.co.starbucks.main;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -20,8 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class IndexController {
-	
-	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -30,10 +28,14 @@ public class IndexController {
 		log.debug("지나갑니다~~~");
 		return "redirect:./login.god";
 	}
+	@RequestMapping(value = "/index.god", method = RequestMethod.GET)
+	public String index() {
+		log.debug("index도 지나갑니다~~~");	
+		return "redirect:./login.god";
+	}
 	
 	@RequestMapping(value = "/login.god", method = RequestMethod.GET)
 	public void login() {
 		log.debug("로그인화면 도착~~~~");
 	}
-	
 }

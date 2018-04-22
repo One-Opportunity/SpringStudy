@@ -24,8 +24,7 @@
   <intercept-url pattern="/find.god" access="permitAll"/>
   <intercept-url pattern="/captcha/*" access="permitAll"/>
   <intercept-url pattern="/security/login" access="permitAll"/>
-  <intercept-url pattern="/board/map/*" access="permitAll"/>
-  <intercept-url pattern="/board/doc/*" access="permitAll"/>
+  <intercept-url pattern="/board/*" access="permitAll"/>
   <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
  
 <!--  	

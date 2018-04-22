@@ -48,6 +48,8 @@
 			
 		});
 	}
+	
+	
 	function deleteComment(commentId) {
 		var url = "${_ctx}/board/comment/list.god";
 		$.post(url, {commentId:commentId}, function(){
