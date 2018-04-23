@@ -89,11 +89,44 @@ public class BoardDocController {
 		
 		log.debug("view의  search" + search);
 		
+		// 조회
 		BoardDocDTO docDTO = boardDocService.view(docId);
 		log.debug("view의 docDTO  >>>>>" + docDTO);
 		model.addAttribute("docDTO", docDTO);
 	}
 	
+	//게시판 수정이동
+	@RequestMapping(value="/edit.god", method=RequestMethod.GET)
+	public void goEdit(Model model, Integer docId, @ModelAttribute("search") BoardSearchDTO search) {
+		model.addAttribute("docId", docId);
+		BoardDocDTO docDTO = boardDocService.view(docId);
+		log.debug("view의 docDTO  >>>>>" + docDTO);
+		model.addAttribute("docDTO", docDTO);
+	}
+	
+	
+//	@ResponseBody
+//	@RequestMapping(value="/write.god", method=RequestMethod.GET)
+//	public void goUpdate(Model model, String boardContents, String title, Integer mapId) {
+//		log.debug("업데이트화면 boardContents와 title 가져오기~~~~~>>>>>" + boardContents + ", " + title);
+//	}
+	
+	/**
+	 * 게시판 수정
+	 * @param model
+	 * @param session
+	 * @param boardDocDTO
+	 */
+	@RequestMapping(value="/edit.god", method=RequestMethod.POST)
+	public String doEdit(Model model, HttpSession session, BoardDocDTO boardDocDTO, @ModelAttribute("search") BoardSearchDTO search) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("_user");
+		boardDocDTO.setUserId(userDTO.getUserId());
+		boardDocService.edit(boardDocDTO);
+		
+		log.debug("====@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=====>>" + userDTO);
+		log.debug("====@@@@@@@@@@@@@@  boardDocDTO  @@@@@@@@@@@@@@@@@@@@@@@@ =====>>" + boardDocDTO);
+		return "redirect:./view.god?docId=" + boardDocDTO.getDocId() + "&" + search.getParams();
+	}
 	
 
 

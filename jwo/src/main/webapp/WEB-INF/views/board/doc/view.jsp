@@ -100,7 +100,8 @@
 					<div class="btnSet">
 						<a href="javascript:goList('${docDTO.mapId}')" class="disPB btnBase">목록</a> 
 						<a href="${_ctx}/board/doc/write.god?mapId=${docDTO.mapId}" class="disPB btnBase">글쓰기</a>
-							 <a href="javascript:;" id="btnUpdate" class="disPB btnBase">수정</a> <a href="" class="disPB btnBase">삭제</a>
+						<a href="${_ctx}/board/doc/edit.god?${search.params}&docId=${docDTO.docId}" id="btnUpdate" class="disPB btnBase">수정</a>
+						 <a href="" class="disPB btnBase">삭제</a>
 					</div>
 			
 					<div class="replyWrap" id="commentWrap">
@@ -112,9 +113,10 @@
 		</div>
 	</div>
 	<form id="frmList" method="get" name="frmList" action="${_ctx}/board/doc/list.god" class="search_area">
-		<input type="hidden" name="mapId" id="mapId" /> <input type="hidden" name="page" id="page" value="${search.page}" /> <input type="hidden"
-			name="searchType" id="searchType" value="${search.searchType}" /> <input type="hidden" name="searchText" id="searchText"
-			value="${search.searchText}" />
+		<input type="hidden" name="mapId" id="mapId" /> 
+		<input type="hidden" name="page" id="page" value="${search.page}" /> <input type="hidden"
+			name="searchType" id="searchType" value="${search.searchType}" /> 
+			<input type="hidden" name="searchText" id="searchText" value="${search.searchText}" />
 	</form>
 
 </body>
