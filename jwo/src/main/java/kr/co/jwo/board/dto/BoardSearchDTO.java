@@ -8,7 +8,7 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class BoardSearchDTO extends PageDTO{
+public class BoardSearchDTO extends PageDTO {
 	private Integer mapId 		= null;
 	
 	private String 	searchText 	= null,

@@ -89,6 +89,7 @@
 							<tr>
 								<th width="8%">번호</th>
 								<th>제목</th>
+								<th>작성자</th>
 								<th width="15%">등록일자</th>
 								<th width="10%">첨부파일</th>
 								<th width="10%">조회수</th>
@@ -103,6 +104,7 @@
 									<a href="javascript:goView('${item.docId}');">${item.title}</a>
 <%-- 									<a href="${_ctx}/board/doc/view.god?docId=${item.docId}&${search.params}"></a> --%>
 									</td>
+									<td>${item.name}</td>
 									<td><fmt:formatDate value="${item.regDt}" pattern="yyyy.MM.dd. HH시 mm분 " /></td>
 									<td>N</td>
 									<td><fmt:formatNumber value="${item.cntRead}"/></td>

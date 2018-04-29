@@ -10,7 +10,7 @@ import kr.co.jwo.board.dto.BoardCommentDTO;
 import kr.co.jwo.board.service.IBoardCommentService;
 
 @Service
-public class BoardCommentService implements IBoardCommentService {
+public class BoardCommentServiceImpl implements IBoardCommentService {
 
 	@Autowired private IBoardCommentDAO commentDAO = null;
 	

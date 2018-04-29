@@ -28,8 +28,7 @@
 	<update id="updateData" parameterType="kr.co.jwo.user.dto.UserDTO">
 		UPDATE TB_USER
 		SET
-		LOGIN_ID
-		= #{loginId}
+		LOGIN_ID = #{loginId}
 		,LOGIN_PW = #{loginPw}
 		,NAME = #{name}
 		,PHONE = #{phone}

@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<c:import url="/WEB-INF/views/inc/head.jsp" />
+	<script>
+	$(document).ready(function(){
+    	$('#headerui').children().children().eq(0).addClass('on');
+	});
+	</script>
 </head>
 
 <body>

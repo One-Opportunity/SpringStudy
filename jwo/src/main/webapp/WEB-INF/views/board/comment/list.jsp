@@ -17,7 +17,7 @@
 				<tr>
 					<th class="name">${item.name}</th>
 					<td class="cont">${item.comments}<a href="javascript:deleteComment(${item.commentId});" id="btnDelete" class="disPB btnS">삭제</a></td>
-					<td class="date"><fmt:formatDate value="${item.regDt}" pattern="yyyy.MM.dd hh시 mm분" /></td>
+					<td class="date" style="width: 500px;"><fmt:formatDate value="${item.regDt}" pattern="yy년 MM월 dd일 a hh시 mm분" /></td>
 				</tr>
 							
 				

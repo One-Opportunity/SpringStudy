@@ -3,34 +3,34 @@
 <mapper namespace="BoardComment">
 
 	<select id="selectList" parameterType="Integer" resultType="kr.co.jwo.board.dto.BoardCommentDTO">
-		SELECT C.*, U.LOGIN_ID, U.NAME
-		FROM TB_BOARD_COMMENT C
-        INNER JOIN TB_USER U ON C.USER_ID = U.USER_ID
+		SELECT BC.*
+		, FN_USERNAME(BC.USER_ID) AS NAME
+		FROM TB_BOARD_COMMENT BC
 		WHERE DOC_ID = #{docId}
 		ORDER BY COMMENT_ID DESC
 	</select>
 	<insert id="insert" parameterType="kr.co.jwo.board.dto.BoardCommentDTO">
 		<selectKey keyProperty="commentId" resultType="Integer" order="BEFORE">
-			SELECT SEQ_COMMENT.NEXTVAL FROM DUAL	
+			SELECT SEQ_COMMENT.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO TB_BOARD_COMMENT(
-		    COMMENT_ID
-		    , DOC_ID
-		    , USER_ID
-		    , COMMENTS
-		    , REG_DT
-	    ) VALUES (
-	    	#{commentId}
-		    , #{docId}
-		    , #{userId}
-		    , #{comments}
-		    , SYSDATE
-	    )
+		COMMENT_ID
+		, DOC_ID
+		, USER_ID
+		, COMMENTS
+		, REG_DT
+		) VALUES (
+		#{commentId}
+		, #{docId}
+		, #{userId}
+		, #{comments}
+		, SYSDATE
+		)
 	</insert>
-	
+
 	<delete id="delete" parameterType="Integer">
-		DELETE 
-    	FROM TB_BOARD_COMMENT 
-    	WHERE COMMENT_ID = #{commentId}
+		DELETE
+		FROM TB_BOARD_COMMENT
+		WHERE COMMENT_ID = #{commentId}
 	</delete>
 </mapper>

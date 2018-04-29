@@ -30,4 +30,9 @@ public class IndexController {
 	public void login() {
 		
 	}
+	
+	@RequestMapping(value="/find.god", method=RequestMethod.GET)
+	public void find() {
+		
+	}
 }

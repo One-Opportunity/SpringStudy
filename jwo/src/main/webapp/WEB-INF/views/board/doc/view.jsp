@@ -48,8 +48,6 @@
 			
 		});
 	}
-	
-	
 	function deleteComment(commentId) {
 		var url = "${_ctx}/board/comment/list.god";
 		$.post(url, {commentId:commentId}, function(){
@@ -81,13 +79,19 @@
 					<table class="base_tbl">
 						<thead>
 							<tr>
-								<th colspan="6" class="t_color">${docDTO.title}</th>
+								<th colspan="8" class="t_color">${docDTO.title}</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
+								<td width="6%">작성자</td>
+								<td width="20%" class="t_color">${docDTO.name}</td>
 								<td width="8%">첨부파일</td>
-								<td class="txtCut alignLeft"><a href="#"></a></td>
+								<c:forEach items="${docDTO.fileList}" var="file">								
+								
+								<td class="txtCut alignLeft"><a href="${_ctx}/file/downloadFile.god?docId=${file.docId}&fileSno=${file.fileSno}">${file.orgFileName}</a></td>
+								
+								</c:forEach>
 								<td width="10%">작성일</td>
 								<td width="20%" class="t_color"><fmt:formatDate value="${docDTO.regDt}" pattern="yyyy.MM.dd. HH시 mm분" /></td>
 								<td width="10%">조회수</td>
@@ -102,7 +106,8 @@
 					<div class="btnSet">
 						<a href="javascript:goList('${docDTO.mapId}')" class="disPB btnBase">목록</a> 
 						<a href="${_ctx}/board/doc/write.god?mapId=${docDTO.mapId}" class="disPB btnBase">글쓰기</a>
-							 <a href="javascript:;" id="btnUpdate" class="disPB btnBase">수정</a> <a href="" class="disPB btnBase">삭제</a>
+						<a href="${_ctx}/board/doc/edit.god?${search.params}&docId=${docDTO.docId}" id="btnUpdate" class="disPB btnBase">수정</a>
+						 <a href="" class="disPB btnBase">삭제</a>
 					</div>
 			
 					<div class="replyWrap" id="commentWrap">
@@ -114,9 +119,10 @@
 		</div>
 	</div>
 	<form id="frmList" method="get" name="frmList" action="${_ctx}/board/doc/list.god" class="search_area">
-		<input type="hidden" name="mapId" id="mapId" /> <input type="hidden" name="page" id="page" value="${search.page}" /> <input type="hidden"
-			name="searchType" id="searchType" value="${search.searchType}" /> <input type="hidden" name="searchText" id="searchText"
-			value="${search.searchText}" />
+		<input type="hidden" name="mapId" id="mapId" /> 
+		<input type="hidden" name="page" id="page" value="${search.page}" /> <input type="hidden"
+			name="searchType" id="searchType" value="${search.searchType}" /> 
+			<input type="hidden" name="searchText" id="searchText" value="${search.searchText}" />
 	</form>
 
 </body>
