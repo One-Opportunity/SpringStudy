@@ -9,9 +9,19 @@
 <c:import url="/WEB-INF/views/inc/head.jsp" />
 <script>
 	$(document).ready(function() {
-    	$('#headerui').children().children().eq(2).addClass('on');
-
+		$("#header ul li").children().eq(2).addClass("on");
 		$("#phone").setMask();
+		
+		// 이름 선택 시 이메일 자동 전체선택
+		$("#name").click(function(){
+			$(this).select();
+		});
+		
+		// 이메일 선택 시 이메일 자동 전체선택
+		$("#email").click(function(){
+			$(this).select();
+		});
+		
 		$("input").focus(function() {
 			$(this).css("background-color", "#DDDDDD");
 		});
@@ -77,7 +87,7 @@
 						<input type="password" name="reLoginPw" placeholder="수정할 비밀번호를 다시 입력하시오" maxlength="15" minlength="8" equalTo="#loginPw" required />
 					</dd>
 					<dd>
-						<input type="text" name="name" placeholder="${userDTO.name}" value="${userDTO.name}" maxlength="30" required />
+						<input type="text" id="name" name="name" placeholder="${userDTO.name}" value="${userDTO.name}" maxlength="30" required />
 					</dd>
 					<dd>
 						<input type="text" id="phone" name="phone" placeholder="${userDTO.phone}" value="${userDTO.phone}" alt="mobile" maxlength="13" required /> 

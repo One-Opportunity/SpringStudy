@@ -44,6 +44,7 @@
 	function listComment(){
 		var url = "${_ctx}/board/comment/list.god?docId=${docDTO.docId}";
 		$.get(url, function(html){
+			
 			$("#commentWrap").html(html);
 			
 		});
@@ -107,7 +108,9 @@
 						<a href="javascript:goList('${docDTO.mapId}')" class="disPB btnBase">목록</a> 
 						<a href="${_ctx}/board/doc/write.god?mapId=${docDTO.mapId}" class="disPB btnBase">글쓰기</a>
 						<a href="${_ctx}/board/doc/edit.god?${search.params}&docId=${docDTO.docId}" id="btnUpdate" class="disPB btnBase">수정</a>
-						 <a href="" class="disPB btnBase">삭제</a>
+						<c:if test="${userDTO.userId == docDTO.userId}">
+						 <a href="${_ctx}/board/doc/docremove.god?${search.params}&docId=${docDTO.docId}" class="disPB btnBase">삭제</a>
+						 </c:if>
 					</div>
 			
 					<div class="replyWrap" id="commentWrap">

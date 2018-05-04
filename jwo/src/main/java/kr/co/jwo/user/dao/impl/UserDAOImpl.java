@@ -55,4 +55,20 @@ public class UserDAOImpl extends BaseDaoSupport implements IUserDAO{
 		return this.getSqlSession().selectOne("user.selectByLoginId", loginId);
 	}
 
+	/**
+	 * ID 찾기
+	 */
+	@Override
+	public UserDTO selectOneByEmail(String email) {
+		return this.getSqlSession().selectOne("User.selectOneByEmail", email);
+	}
+	
+	/**
+	 * PW 찾기
+	 */
+	@Override
+	public UserDTO selectOneByLoginIdAndEmail(UserDTO _userDTO) {
+		return this.getSqlSession().selectOne("User.selectOneByLoginIdAndEmail", _userDTO);
+	}
+
 }

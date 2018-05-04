@@ -101,7 +101,10 @@ public class BoardDocController {
 	 * @param docId
 	 */
 	@RequestMapping(value = "/view.god", method = RequestMethod.GET)
-	public void view(Model model, @ModelAttribute("search") BoardSearchDTO search, Integer docId) {
+	public void view(Model model, @ModelAttribute("search") BoardSearchDTO search, Integer docId , HttpSession session) {
+		UserDTO userDTO = (UserDTO)session.getAttribute("_user");
+		model.addAttribute("userDTO", userDTO);
+		
 		// 통합맵 정보 가져오기
 		BoardMapDTO boardMapDTO = mapService.view(search.getMapId());
 		model.addAttribute("mapDTO", boardMapDTO);
@@ -174,6 +177,13 @@ public class BoardDocController {
 		log.debug("userDTO =========>" + _userDTO);
 		userService.edit(_userDTO);
 		return "s";
+	}
+	
+	@RequestMapping(value = "/docremove.god", method=RequestMethod.GET)
+	public String remove(Integer docId, @ModelAttribute("search") BoardSearchDTO search) {
+		log.debug("BoardDocController의 remove에서 docId와 search:" + docId + ", " + search);
+		boardDocService.remove(docId);
+		return "redirect:./list.god?" + search.getParams();
 	}
 
 }

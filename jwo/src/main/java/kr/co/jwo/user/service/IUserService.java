@@ -12,4 +12,6 @@ public interface IUserService {
 	public int viewCountByEmail(String email);
 	public int viewCountByPhone(String phone);
 	public UserDTO viewByLoginId(String loginId);
+	public UserDTO viewByEmail(String email);
+	public UserDTO viewByLoginIdAndEmail(UserDTO _userDTO);
 }

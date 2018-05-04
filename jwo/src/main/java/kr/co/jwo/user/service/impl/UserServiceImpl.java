@@ -69,4 +69,14 @@ public class UserServiceImpl implements IUserService {
 		return userDAO.selectOneByLoginId(loginId);
 	}
 
+	@Override
+	public UserDTO viewByEmail(String email) {
+		return userDAO.selectOneByEmail(email);
+	}
+
+	@Override
+	public UserDTO viewByLoginIdAndEmail(UserDTO _userDTO) {
+		return userDAO.selectOneByLoginIdAndEmail(_userDTO);
+	}
+
 }

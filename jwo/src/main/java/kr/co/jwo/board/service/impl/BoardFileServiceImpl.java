@@ -26,8 +26,8 @@ public class BoardFileServiceImpl implements IBoardFileService {
 	}
 
 	@Override
-	public void remove(Integer fileId) {
-		fileDAO.delete(fileId);
+	public void remove(Integer docId) {
+		fileDAO.delete(docId);
 	}
 
 	@Override

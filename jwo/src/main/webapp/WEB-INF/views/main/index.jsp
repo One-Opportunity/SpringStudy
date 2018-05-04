@@ -7,7 +7,7 @@
 	<c:import url="/WEB-INF/views/inc/head.jsp" />
 	<script>
 	$(document).ready(function(){
-    	$('#headerui').children().children().eq(0).addClass('on');
+		$("#header ul li").children().eq(0).addClass("on");
 	});
 	</script>
 </head>

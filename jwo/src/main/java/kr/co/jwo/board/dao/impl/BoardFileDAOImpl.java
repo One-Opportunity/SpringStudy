@@ -25,8 +25,8 @@ public class BoardFileDAOImpl extends BaseDaoSupport implements IBoardFileDAO{
 	}
 
 	@Override
-	public void delete(Integer fileSno) {
-		this.getSqlSession().delete("BoardFile.delete", fileSno);
+	public void delete(Integer docId) {
+		this.getSqlSession().delete("BoardFile.delete", docId);
 	}
 
 	@Override

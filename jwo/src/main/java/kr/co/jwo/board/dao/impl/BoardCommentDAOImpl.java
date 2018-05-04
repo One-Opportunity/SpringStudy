@@ -26,4 +26,9 @@ public class BoardCommentDAOImpl extends BaseDaoSupport implements IBoardComment
 		this.getSqlSession().delete("BoardComment.delete", commentId);
 	}
 
+	@Override
+	public void deleteByDocId(Integer docId) {
+		this.getSqlSession().delete("BoardComment.deleteByDocId", docId);
+	}
+
 }

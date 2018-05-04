@@ -13,6 +13,7 @@ import kr.co.jwo.board.dao.IBoardDocDAO;
 import kr.co.jwo.board.dto.BoardDocDTO;
 import kr.co.jwo.board.dto.BoardFileDTO;
 import kr.co.jwo.board.dto.BoardSearchDTO;
+import kr.co.jwo.board.service.IBoardCommentService;
 import kr.co.jwo.board.service.IBoardDocService;
 import kr.co.jwo.board.service.IBoardFileService;
 import kr.co.jwo.common.file.FileService;
@@ -28,6 +29,8 @@ public class BoardDocServiceImpl implements IBoardDocService {
 	private IBoardFileService boardFileServiceImpl = null;
 	@Autowired
 	private FileService fileService = null;
+	@Autowired
+	private IBoardCommentService boardCommentService = null;
 
 	@Override
 	@Transactional
@@ -61,7 +64,13 @@ public class BoardDocServiceImpl implements IBoardDocService {
 	}
 
 	@Override
+	@Transactional
 	public void remove(int docId) {
+		boardFileServiceImpl.remove(docId);
+		boardCommentService.removeByDocId(docId);
+		
+		// 좋아요
+		
 		documentDAO.delete(docId);
 	}
 
@@ -87,9 +96,20 @@ public class BoardDocServiceImpl implements IBoardDocService {
 		// 1. 총 게시물 갯수 count
 		boardSearchDTO.setTotal(documentDAO.selectCount(boardSearchDTO));
 
+		
 		// 2. 게시물 목록 가져오기
-
-		return documentDAO.selectList(boardSearchDTO);
+		List<BoardDocDTO> list =  documentDAO.selectList(boardSearchDTO);
+		
+		for(BoardDocDTO docDTO : list) {
+			// 첨부파일 갯수가 0 이상 일 경우만 첨부파일 목록을 가져온다
+			if(docDTO.getCntFile() > 0) {
+				List<BoardFileDTO> fileList = boardFileServiceImpl.list(docDTO.getDocId());
+				docDTO.setFileList(fileList);
+			}
+		}
+		
+		
+		return list;
 	}
 
 	@Override

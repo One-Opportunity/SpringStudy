@@ -19,14 +19,14 @@
   } );
   </script>
 </head>
-<body style="width:410px; height:310px; padding:20px 45px 20px 45px; background-color:#fff; box-shadow:0 5px 0px rgba(0, 0, 0, .1); border-radius:10px; position:absolute; top:30%; left:50%; margin-left:-250px;">
-<div id="tabs">
+<body>
+<div id="tabs" style="width:410px; height:310px; padding:20px 45px 20px 45px; background-color:#fff; box-shadow:0 5px 0px rgba(0, 0, 0, .1); border-radius:10px; position:absolute; top:30%; left:50%; margin-left:-250px;">
   <ul>
     <li><a href="#tabs-1">아이디 찾기</a></li>
     <li><a href="#tabs-2">비밀번호 찾기</a></li>
   </ul>
   <div id="tabs-1">
-  
+  	
   	<input type="email" id="email" name="email" placeholder="이메일" maxlength="20" style="width: 350px; margin-bottom: 15px; height: 40px; padding: 0 9px 0 9px; border: 1px solid #B4B4B4; border-radius: 5px;" required /> <br/>
   	<a href="#" id="findLogin" class="checkId" style="color: white;">아이디 찾기</a> 
 	<a href="${_ctx}/index.god" id="findLogin_x" class="checkId" style="color: white;">취소하기</a>

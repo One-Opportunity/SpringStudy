@@ -33,4 +33,10 @@
 		FROM TB_BOARD_COMMENT
 		WHERE COMMENT_ID = #{commentId}
 	</delete>
+	
+		<delete id="deleteByDocId" parameterType="Integer">
+		DELETE
+		FROM TB_BOARD_COMMENT
+		WHERE DOC_ID = #{docId}
+	</delete>
 </mapper>

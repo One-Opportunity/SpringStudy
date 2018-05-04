@@ -26,4 +26,14 @@
 <script type="text/javascript" src="${_ctx}/res/js/dtree/dtree.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/jquery.form.js"></script>
 <script type="text/javascript" src="${_ctx}/res/js/main.js"></script>
+<script type="text/javascript" src="${_ctx}/res/js/snow.js"></script>
+<script src="${_ctx}/res/js/snow/jquery.snow.js"></script>
+<script src="${_ctx}/res/js/snow/snowstorm-min.js"></script>
+<script>
+$(document).ready(function(){
+	$(".fn").snow();
+	$(".fn").snow({ minSize: 10, maxSize: 40, newOn: 7000, flakeColor: '#0099FF' });
+});
+</script>
+
     

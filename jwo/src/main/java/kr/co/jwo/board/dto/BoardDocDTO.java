@@ -17,6 +17,9 @@ public class BoardDocDTO extends UserDTO{
 					mapId = null,				// 맵ID
 					cntRead = null;				// 조회수
 	
+	private Integer cntFile = null;
+	private Integer cntComment = null;
+	
 	private String 	title = null,				// 제목
 					boardContents = null;		// 내용
 	

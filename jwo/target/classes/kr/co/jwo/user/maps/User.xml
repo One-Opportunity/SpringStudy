@@ -43,27 +43,23 @@
 		USER_ID = #{userId}
 	</delete>
 
-	<select id="selectData" parameterType="int"
-		resultType="kr.co.jwo.user.dto.UserDTO">
+	<select id="selectData" parameterType="int" resultType="kr.co.jwo.user.dto.UserDTO">
 		SELECT * FROM TB_USER
 		WHERE USER_ID = #{userId}
 	</select>
 
-	<select id="selectCountByLoginId" parameterType="String"
-		resultType="int">
+	<select id="selectCountByLoginId" parameterType="String" resultType="int">
 		SELECT COUNT(*) AS CNT
 		FROM TB_USER
 		WHERE LOGIN_ID =
 		#{loginId}
 	</select>
-	<select id="selectCountByPhone" parameterType="String"
-		resultType="int">
+	<select id="selectCountByPhone" parameterType="String" resultType="int">
 		SELECT COUNT(*) AS CNT
 		FROM TB_USER
 		WHERE PHONE = #{phone}
 	</select>
-	<select id="selectCountByEmail" parameterType="String"
-		resultType="int">
+	<select id="selectCountByEmail" parameterType="String" resultType="int">
 		SELECT COUNT(*) AS CNT
 		FROM TB_USER
 		WHERE EMAIL = #{email}
@@ -73,5 +69,20 @@
 		SELECT *
 		FROM TB_USER
 		WHERE LOGIN_ID= #{loginId}
+	</select>
+
+	<!-- ID 찾기 -->
+	<select id="selectOneByEmail" parameterType="String" resultType="kr.co.jwo.user.dto.UserDTO">
+		SELECT *
+		FROM TB_USER
+		WHERE EMAIL = #{email}
+	</select>
+	
+	<!-- PW 찾기 -->
+	<select id="selectOneByLoginIdAndEmail" parameterType="kr.co.jwo.user.dto.UserDTO" resultType="kr.co.jwo.user.dto.UserDTO">
+		SELECT *
+		FROM TB_USER
+		WHERE LOGIN_ID = #{loginId}
+		AND EMAIL = #{email}
 	</select>
 </mapper>

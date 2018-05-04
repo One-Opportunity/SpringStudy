@@ -57,6 +57,5 @@ public class BoardCommentController {
 	public void delete(Model model, @ModelAttribute("commentId") Integer commentId ) {
 		log.debug("commentId 가져오기" + commentId);
 		commentService.remove(commentId);
-		
 	}
 }

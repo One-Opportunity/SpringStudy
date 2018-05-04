@@ -3,6 +3,7 @@
 
 <script type="text/javascript">
 	$(function() {
+
 		loadTreeMap();
 	});
 	
@@ -40,8 +41,10 @@
 				<img src="${_ctx}/res/images/thum_img.jpg" alt="thum">
 			</p>
 		</div>
-
-		<span><a href="${_ctx}/logout.god">Logout</a></span>
+		<span>
+		<a href="${_ctx}/board/doc/myupdate.god" style="width: 45%; display: inline-block;">정보수정</a>
+		<a href="${_ctx}/logout.god" style="width: 45%; display: inline-block;">Logout</a>
+		</span>
 
 	</div>
 

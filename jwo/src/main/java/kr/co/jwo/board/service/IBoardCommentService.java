@@ -8,4 +8,5 @@ public interface IBoardCommentService {
 	public List<BoardCommentDTO>list(Integer docId);
 	public void write(BoardCommentDTO commentDTO);
 	public void remove(Integer commentId);
+	public void removeByDocId(Integer docId);
 }

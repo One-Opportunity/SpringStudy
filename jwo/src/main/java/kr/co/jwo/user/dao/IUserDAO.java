@@ -13,4 +13,6 @@ public interface IUserDAO {
 	public int selectCountByPhone(String phone);
 	public UserDTO selectOneByLoginId(String loginId);
 	
+	public UserDTO selectOneByEmail(String email);
+	public UserDTO selectOneByLoginIdAndEmail(UserDTO _userDTO);
 }

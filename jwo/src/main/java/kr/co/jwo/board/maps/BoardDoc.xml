@@ -79,11 +79,11 @@
 	</select>
 
 	<select id="selectListByMapId" parameterType="kr.co.jwo.board.dto.BoardSearchDTO" resultType="kr.co.jwo.board.dto.BoardDocDTO">
-		SELECT B.* 
+		SELECT B.*, FN_USERNAME(B.USER_ID) AS NAME, FN_FILENUM(B.DOC_ID) AS CNT_FILE, (SELECT COUNT(*) FROM TB_BOARD_COMMENT BC WHERE B.DOC_ID = BC.DOC_ID) AS CNT_COMMENT
 		FROM (
 		SELECT ROWNUM AS RN, A.*
 		FROM (
-		SELECT BD.*, FN_USERNAME(BD.USER_ID) AS NAME
+		SELECT BD.*
 		FROM TB_BOARD_DOC BD
 		WHERE MAP_ID = #{mapId}
 		<if test="searchType != null and searchType != ''">

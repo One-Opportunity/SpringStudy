@@ -9,7 +9,6 @@
 <c:import url="/WEB-INF/views/inc/head.jsp" />
 <script>
 	$(function() {
-		
 		//검색유지
 		$("#searchType > option[value='${search.searchType}']").attr("selected", true);
 		var mapId = $("#mapId").val();
@@ -21,7 +20,6 @@
 							document.location.href = "${_ctx}/board/doc/write.god?mapId="
 									+ mapId;
 						});
-
 	});
 	
 	// 페이지 이동
@@ -35,6 +33,9 @@
 		$("#docId").val(docId);
 		$("#frmView").submit();
 	}
+	
+	
+
 	
 </script>
 </head>
@@ -101,12 +102,19 @@
 									<td>${item.docId}</td>
 									<td class="txtCut alignLeft">
 									
-									<a href="javascript:goView('${item.docId}');">${item.title}</a>
+									<a href="javascript:goView('${item.docId}');">${item.title}  <c:if test="${item.cntComment > 0}">(${item.cntComment})</c:if></a>
+									
 <%-- 									<a href="${_ctx}/board/doc/view.god?docId=${item.docId}&${search.params}"></a> --%>
 									</td>
 									<td>${item.name}</td>
 									<td><fmt:formatDate value="${item.regDt}" pattern="yyyy.MM.dd. HH시 mm분 " /></td>
-									<td>N</td>
+									
+									<td class="cnt" ><c:forEach items="${item.fileList}" var="file">
+									<a href="${_ctx}/file/downloadFile.god?docId=${file.docId}&fileSno=${file.fileSno}">
+									<img src="${_ctx}/res/images/clips.png" style="width: 10%;"  />${file.orgFileName}</a><br/> 
+									</c:forEach>
+									</td>
+									
 									<td><fmt:formatNumber value="${item.cntRead}"/></td>
 								</tr>
 							</c:forEach>

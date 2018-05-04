@@ -9,8 +9,7 @@
 <c:import url="/WEB-INF/views/inc/head.jsp" />
 <script>
 $(document).ready(function(){
-	$('#headerui').children().children().eq(1).addClass('on');
-
+	$("#header ul li").children().eq(1).addClass("on");
 })
 // 조회페이지 이동
 function goView(docId){

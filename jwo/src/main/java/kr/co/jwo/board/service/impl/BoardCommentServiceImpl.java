@@ -29,4 +29,10 @@ public class BoardCommentServiceImpl implements IBoardCommentService {
 		commentDAO.delete(commentId);
 	}
 
+	@Override
+	public void removeByDocId(Integer docId) {
+		commentDAO.deleteByDocId(docId);
+
+	}
+
 }

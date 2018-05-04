@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <c:import url="/WEB-INF/views/inc/head.jsp" />
+
 <script>
 	$(document).ready(function() {
 		$("input").focus(function() {
@@ -64,7 +65,10 @@
 						<input type="password" name="loginPw" placeholder="Password" required="required">
 					</dd>
 				</dl>
-				<a href="javascript:;" class="loginBtn" id="btnLogin">로그인</a> <a href="${_ctx}/join.god" class="joinBtn">회원가입</a> <a href="${_ctx}/find.god">아이디 찾기</a> <a href="${_ctx}/find.god">비밀번호찾기</a>
+				<a href="javascript:;" class="loginBtn" id="btnLogin">로그인</a> 
+				<a href="${_ctx}/join.god" class="joinBtn">회원가입</a>
+				 <a href="${_ctx}/find.god">아이디/비밀번호 찾기</a> 
+<%-- 				 <a href="${_ctx}/find.god">비밀번호찾기</a> --%>
 			</form>
 		</div>
 	</div>
