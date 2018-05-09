@@ -9,7 +9,8 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class BoardSearchDTO extends PageDTO {
-	private Integer mapId 		= null;
+	private Integer mapId 		= null,
+					userId		= null;
 	
 	private String 	searchText 	= null,
 					searchType 	= null;

@@ -154,9 +154,10 @@
 	</div>
 <form id="frmView" method="get" name="frmView" action="${_ctx}/board/doc/view.god" class="search_area">
 	<input type="hidden" name="docId" id="docId"/>
-	<input type="hidden" name="mapId" id="mapId" value="${mapDTO.mapId}" />
+	<input type="hidden" name="mapId" id="mapId" value="${search.mapId}" />
 	<input type="hidden" name="page" id="page" value="${search.page}" />
 	<input type="hidden" name="searchType" id="searchType" value="${search.searchType}" />
 	<input type="hidden" name="searchText" id="searchText" value="${search.searchText}" />
+</form>
 </body>
 </html>

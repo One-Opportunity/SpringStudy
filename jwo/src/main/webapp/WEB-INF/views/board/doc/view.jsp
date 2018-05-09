@@ -85,19 +85,24 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td width="6%">작성자</td>
+								<td width="10%">작성자</td>
 								<td width="20%" class="t_color">${docDTO.name}</td>
-								<td width="8%">첨부파일</td>
-								<c:forEach items="${docDTO.fileList}" var="file">								
 								
-								<td class="txtCut alignLeft"><a href="${_ctx}/file/downloadFile.god?docId=${file.docId}&fileSno=${file.fileSno}">${file.orgFileName}</a></td>
-								
-								</c:forEach>
 								<td width="10%">작성일</td>
 								<td width="20%" class="t_color"><fmt:formatDate value="${docDTO.regDt}" pattern="yyyy.MM.dd. HH시 mm분" /></td>
 								<td width="10%">조회수</td>
 								<td width="20%" class="t_color">${docDTO.cntRead}</td>
 							</tr>
+															<c:forEach items="${docDTO.fileList}" var="file">								
+							
+							<tr>
+							<td width="5%">첨부파일</td>
+								
+								<td width="10%" colspan="6" valign="top" class="txtCut alignLeft"><a href="${_ctx}/file/downloadFile.god?docId=${file.docId}&fileSno=${file.fileSno}">${file.orgFileName}</a></td>
+								
+							</tr>
+															</c:forEach>
+							
 							<tr>
 								<td colspan="6" class="alignLeft">${docDTO.boardContents}</td>
 							</tr>

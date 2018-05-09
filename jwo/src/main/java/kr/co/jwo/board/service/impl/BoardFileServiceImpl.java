@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.jwo.board.dao.IBoardFileDAO;
 import kr.co.jwo.board.dto.BoardFileDTO;
+import kr.co.jwo.board.dto.BoardSearchDTO;
 import kr.co.jwo.board.service.IBoardFileService;
 
 @Service
@@ -34,6 +35,7 @@ public class BoardFileServiceImpl implements IBoardFileService {
 	public BoardFileDTO view(BoardFileDTO fileDTO) {
 		return fileDAO.selectOne(fileDTO);
 	}
+
 
 
 

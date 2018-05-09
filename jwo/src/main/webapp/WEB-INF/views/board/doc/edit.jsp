@@ -13,15 +13,24 @@ $(document).ready(function(){
 		if( title == "" || content == ""){
 			alert("제목 또는 내용을 적으세요");
 		} else {
-		if(("#frmEdit").valid()){
+		
+		oEditors.getById["boardContents"].exec("UPDATE_CONTENTS_FIELD", []);
 		$("#frmEdit").submit();
-	}
+	
 // 		$.post(url, $("#frmWrite").serialize(), function(s) {
 // 			document.location.href = "${_ctx}/board/doc/"+s;
 // 		});
 		}
+		
 	});
-	
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+	    oAppRef: oEditors,
+	    elPlaceHolder: "boardContents",
+	    sSkinURI: "${_ctx}/res/editor/SmartEditor2Skin.html",
+	    fCreator: "createSEditor2"
+
+	});
 	
 });
 
@@ -51,11 +60,11 @@ $(document).ready(function(){
 							<tbody>
 								<tr>
 									<th width="20%" class="t_color">제목입력</th>
-									<td><input type="text" id="title" name="title" style="font-family: '궁서'" required="required" value="${docDTO.title}" /></td>
+									<td><input type="text" id="title" name="title" required="required" value="${docDTO.title}" /></td>
 								</tr>
 								<tr>
 									<th class="t_color">내용입력</th>
-									<td><textarea name="boardContents" id="boardContents" style="font-family: '궁서'" required="required">${docDTO.boardContents}</textarea></td>
+									<td><textarea name="boardContents" id="boardContents">${docDTO.boardContents}</textarea></td>
 								</tr>
 							</tbody>
 						</table>

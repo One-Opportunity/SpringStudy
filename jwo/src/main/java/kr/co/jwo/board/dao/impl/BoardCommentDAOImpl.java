@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.jwo.board.dao.IBoardCommentDAO;
 import kr.co.jwo.board.dto.BoardCommentDTO;
+import kr.co.jwo.board.dto.BoardSearchDTO;
 import kr.co.jwo.common.dao.BaseDaoSupport;
 
 @Repository

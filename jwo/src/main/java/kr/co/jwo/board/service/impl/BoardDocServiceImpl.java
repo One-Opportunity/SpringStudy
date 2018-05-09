@@ -107,8 +107,6 @@ public class BoardDocServiceImpl implements IBoardDocService {
 				docDTO.setFileList(fileList);
 			}
 		}
-		
-		
 		return list;
 	}
 
@@ -118,8 +116,28 @@ public class BoardDocServiceImpl implements IBoardDocService {
 	}
 
 	@Override
-	public List<BoardDocDTO> listByUserId(Integer userId) {
-		return documentDAO.selectListByUserId(userId);
+	public List<BoardDocDTO> listByUserId(BoardSearchDTO search) {
+		// 1. 총 게시물 갯수 count
+		search.setTotal(documentDAO.selectCountByUserId(search));
+
+		
+		// 2. 게시물 목록 가져오기
+		List<BoardDocDTO> list =  documentDAO.selectListByUserId(search);
+		log.debug("service의 search 추출 :" + search );
+		for(BoardDocDTO docDTO : list) {
+			// 첨부파일 갯수가 0 이상 일 경우만 첨부파일 목록을 가져온다
+			if(docDTO.getCntFile() > 0) {
+				List<BoardFileDTO> fileList = boardFileServiceImpl.list(docDTO.getDocId());
+				docDTO.setFileList(fileList);
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<BoardDocDTO> listMyComment(Integer userId) {
+		
+		return documentDAO.selectListMyComment(userId);
 	}
 
 }

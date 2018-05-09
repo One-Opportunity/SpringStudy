@@ -29,6 +29,8 @@
 <script type="text/javascript" src="${_ctx}/res/js/snow.js"></script>
 <script src="${_ctx}/res/js/snow/jquery.snow.js"></script>
 <script src="${_ctx}/res/js/snow/snowstorm-min.js"></script>
+<script src="${_ctx}/res/editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+
 <script>
 $(document).ready(function(){
 	$(".fn").snow();

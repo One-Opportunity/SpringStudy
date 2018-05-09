@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.jwo.board.dto.BoardCommentDTO;
+import kr.co.jwo.board.dto.BoardDocDTO;
+import kr.co.jwo.board.dto.BoardSearchDTO;
 import kr.co.jwo.board.service.IBoardCommentService;
 import kr.co.jwo.common.dto.ResponseDTO;
 import kr.co.jwo.user.dto.UserDTO;
@@ -58,4 +60,5 @@ public class BoardCommentController {
 		log.debug("commentId 가져오기" + commentId);
 		commentService.remove(commentId);
 	}
+	
 }

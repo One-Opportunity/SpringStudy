@@ -21,7 +21,8 @@ public class BoardDocDTO extends UserDTO{
 	private Integer cntComment = null;
 	
 	private String 	title = null,				// 제목
-					boardContents = null;		// 내용
+					boardContents = null,		// 내용
+					mapName = null;
 	
 	private List<MultipartFile> files = null;	// 첨부파일
 	

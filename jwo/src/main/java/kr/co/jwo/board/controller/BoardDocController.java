@@ -57,6 +57,16 @@ public class BoardDocController {
 		model.addAttribute("mapDTO", boardMapDTO);
 	}
 
+	@RequestMapping(value = "/myinfo.god", method = RequestMethod.GET)
+	public void goMyInfo(Model model, HttpSession session, @ModelAttribute("search") BoardSearchDTO search) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("_user");
+		search.setUserId(userDTO.getUserId());
+		List<BoardDocDTO> list = boardDocService.listByUserId(search);
+		log.debug("DocController에 있는 goMyInfo에서 list 값 추출 : " + list);
+		log.debug("DocController에 있는 goMyInfo에서 search 값 추출 : " + search);
+		model.addAttribute("list", list);
+	}
+	
 	// 글쓰기화면으로 이동
 	@RequestMapping(value = "/write.god", method = RequestMethod.GET)
 	public void goWrite(Model model, BoardDocDTO boardDocDTO, @ModelAttribute("search") BoardSearchDTO search) {
@@ -153,15 +163,6 @@ public class BoardDocController {
 		return "redirect:./view.god?docId=" + boardDocDTO.getDocId() + "&" + search.getParams();
 	}
 
-	@RequestMapping(value = "myinfo.god", method = RequestMethod.GET)
-	public void goMyInfo(Model model, HttpSession session) {
-		UserDTO userDTO = (UserDTO) session.getAttribute("_user");
-		List<BoardDocDTO> list = boardDocService.listByUserId(userDTO.getUserId());
-		
-		model.addAttribute("list", list);
-		
-	}
-
 	// 수정 페이지로 이동(GET과 POST로 구분)
 	@RequestMapping(value = "/myupdate.god", method = RequestMethod.GET)
 	public void goMyUpdate(Model model, HttpSession session) {
@@ -185,5 +186,21 @@ public class BoardDocController {
 		boardDocService.remove(docId);
 		return "redirect:./list.god?" + search.getParams();
 	}
+	
+	@RequestMapping(value= "/mycomment.god", method=RequestMethod.GET)
+	public void MyComment(Model model, HttpSession session) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("_user");
+		List<BoardDocDTO> list = boardDocService.listMyComment(userDTO.getUserId());
+		model.addAttribute("list", list);
+	}
 
+	@RequestMapping(value= "/me.god", method=RequestMethod.GET)
+	public void me() {
+		
+	}
+	
+	@RequestMapping(value= "totalboard.god", method=RequestMethod.GET)
+	public void totalBoard() {
+		
+	}
 }

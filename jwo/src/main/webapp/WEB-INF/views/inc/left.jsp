@@ -31,7 +31,9 @@
 // 		document.location.href = "${_ctx}/board/doc/list.god?mapId" + mapId;
 // 	}
 </script>
+
 <div id="leftWrap">
+
 	<div id="infoWrap">
 		<div class="info_txt">
 			<p class="info_name">${_user.loginId}</p>

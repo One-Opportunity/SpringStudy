@@ -12,7 +12,9 @@ public class BoardCommentDTO extends UserDTO{
 					docId 		= null,		// 게시물ID
 					userId 		= null;		// 사용자ID
 	
-	private String 	comments	= null;		// 댓글내용
+	private String 	comments	= null,		// 댓글내용
+					mapName		= null,
+					name		= null;
 	
 	private Date 	regDt		= null;		// 등록일
 }

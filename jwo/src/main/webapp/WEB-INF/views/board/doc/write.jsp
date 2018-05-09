@@ -4,11 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <c:import url="/WEB-INF/views/inc/head.jsp" />
+
 <script>
 	$(document).ready(function() {
 		$("#btnDocSave").click(function() {
-			
 			if ($("#frmWrite").valid()) {
+			    oEditors.getById["boardContents"].exec("UPDATE_CONTENTS_FIELD", []);
 				$("#frmWrite").submit();
 				
 				// 				$("#frmWrite").ajaxSubmit({
@@ -32,6 +33,14 @@
 				// 					document.location.href = "${_ctx}/board/doc/list.god?mapId=" + mapId;
 				// 				});
 			}
+		});
+		var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+		    oAppRef: oEditors,
+		    elPlaceHolder: "boardContents",
+		    sSkinURI: "${_ctx}/res/editor/SmartEditor2Skin.html",
+		    fCreator: "createSEditor2"
+
 		});
 	});
 
@@ -79,11 +88,11 @@
 							<tbody>
 								<tr>
 									<th width="20%" class="t_color">제목입력</th>
-									<td><input type="text" id="title" name="title" style="font-family: '궁서'" required="required" value="${title}" /></td>
+									<td><input type="text" id="title" name="title" required="required"  value="${title}" /></td>
 								</tr>
 								<tr>
 									<th class="t_color">내용입력</th>
-									<td><textarea name="boardContents" id="boardContents" style="font-family: '궁서'" required="required"></textarea></td>
+									<td><textarea name="boardContents" id="boardContents"  required="required"></textarea></td>
 								</tr>
 								<tr>
 									<th class="t_color">첨부파일 <a href="javascript:addFile();" style="padding: 5px;" id="btnFile" class="disPB btnBase">추가</a>
@@ -106,4 +115,5 @@
 	</div>
 
 </body>
+
 </html>

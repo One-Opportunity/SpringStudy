@@ -9,7 +9,7 @@
 <c:import url="/WEB-INF/views/inc/head.jsp" />
 <script>
 	$(document).ready(function() {
-		$("#header ul li").children().eq(2).addClass("on");
+		$("#header ul li").children().eq(3).addClass("on");
 		$("#phone").setMask();
 		
 		// 이름 선택 시 이메일 자동 전체선택

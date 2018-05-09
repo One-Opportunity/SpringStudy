@@ -13,6 +13,8 @@ public interface IBoardDocDAO {
 	public BoardDocDTO selectOne(int docId);
 	public List<BoardDocDTO> selectList(BoardSearchDTO boardSearchDTO);
 	public Integer selectCount(BoardSearchDTO boardSearchDTO);
+	public Integer selectCountByUserId(BoardSearchDTO boardSearchDTO);
 	public void updateByCntRead(int docId);
-	public List<BoardDocDTO> selectListByUserId(Integer userId);
+	public List<BoardDocDTO> selectListByUserId(BoardSearchDTO search);
+	public List<BoardDocDTO> selectListMyComment(Integer userId);
 }

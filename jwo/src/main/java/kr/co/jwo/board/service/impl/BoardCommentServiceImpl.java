@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import kr.co.jwo.board.dao.IBoardCommentDAO;
 import kr.co.jwo.board.dto.BoardCommentDTO;
+import kr.co.jwo.board.dto.BoardDocDTO;
+import kr.co.jwo.board.dto.BoardFileDTO;
+import kr.co.jwo.board.dto.BoardSearchDTO;
 import kr.co.jwo.board.service.IBoardCommentService;
 
 @Service

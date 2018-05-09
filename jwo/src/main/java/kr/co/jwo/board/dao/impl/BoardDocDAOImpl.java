@@ -50,8 +50,18 @@ public class BoardDocDAOImpl extends BaseDaoSupport implements IBoardDocDAO{
 	}
 
 	@Override
-	public List<BoardDocDTO> selectListByUserId(Integer userId) {
-		return this.getSqlSession().selectList("BoardDoc.selectListByUserId", userId);
+	public List<BoardDocDTO> selectListByUserId(BoardSearchDTO search) {
+		return this.getSqlSession().selectList("BoardDoc.selectListByUserId", search);
+	}
+
+	@Override
+	public Integer selectCountByUserId(BoardSearchDTO boardSearchDTO) {
+		return this.getSqlSession().selectOne("BoardDoc.selectCountByUserId", boardSearchDTO);
+	}
+
+	@Override
+	public List<BoardDocDTO> selectListMyComment(Integer userId) {
+		return this.getSqlSession().selectList("BoardDoc.selectListMyComment", userId);
 	}
 
 	
