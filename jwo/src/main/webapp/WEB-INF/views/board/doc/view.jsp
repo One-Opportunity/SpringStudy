@@ -82,19 +82,6 @@
 	}
 	
 	function userDialog() {
-		 dialog = $( "#dialog-form" ).dialog({
-		       autoOpen: false,
-		       height: 400,
-		       width: 350,
-		       modal: true,
-		       buttons: {
-		         "닫기": function() {
-		           dialog.dialog( "close" );
-		         }
-		       },
-		       close: function() {
-		       }
-		     });	
 		
 		var url = "${_ctx}/board/dialog/userinfo.god?userId=${docDTO.userId}";
 		$.get(url, function (html) {

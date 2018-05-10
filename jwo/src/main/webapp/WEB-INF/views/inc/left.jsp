@@ -22,6 +22,7 @@
 								d.add(this.mapId, this.parMapId, this.mapName, "${_ctx}/board/doc/list.god?mapId=" + this.mapId);
 							}
 						});
+								d.add(100000, 1, "팝업관리", "${_ctx}/popup/doc/list.god");
 // 				console.log(d.toString());
 				$("#dtree").html(d.toString());
 			}
